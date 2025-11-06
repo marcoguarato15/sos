@@ -17,3 +17,4 @@ ma = Marshmallow(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
+from .models import usuario_model, horario_trabalho_model, setor_model

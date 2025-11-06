@@ -5,6 +5,7 @@ __pycache__/
 
 # Config
 config.py
+crypto.py
 
 # Pendências
 fazer.txt
