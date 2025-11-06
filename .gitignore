@@ -9,6 +9,9 @@ config.py
 # Pendências
 fazer.txt
 
+# migrations
+migrations
+
 # C extensions
 *.so
 
