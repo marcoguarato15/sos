@@ -32,21 +32,3 @@ def jwt_refresh(func):
                 return redirect(url_for("login"))
         return func(*args, **kwargs)
     return wrapper
-
-def admin_required(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        try:
-            verify_jwt_in_request()
-        except NoAuthorizationError:
-            return make_response(jsonify({"message":"Token ausente"}),401)
-        except ExpiredSignatureError:
-            return make_response(jsonify({"message":"Token expirado"}), 401)
-        except Exception as e:
-            return make_response(jsonify({"message":f"Token inválido"}))
-        claims = get_jwt()
-        if claims["roles"] != "admin":
-            return make_response(jsonify({"message":"Usuario não possui autorização"}), 403)
-        else:
-            return func(*args, **kwargs)
-    return wrapper
