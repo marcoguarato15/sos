@@ -1,12 +1,13 @@
 from app import app, jwt
 from flask import render_template, request, redirect, url_for, make_response
 from app.services import usuario_service
+
 from routes import index
 from routes.login import login
+from routes.usuario import usuario
 # @app.route("/")
 # def index():
 #     return render_template('base.html')
-
 
 @jwt.additional_claims_loader
 def add_claims_to_access_token(identity):

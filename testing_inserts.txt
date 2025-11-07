@@ -13,3 +13,6 @@ insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('D
 
 insert into horario_trabalho (horario_inicio, horario_fim, tipo_turno, data_criacao, ultima_atualizacao, criador_id) values ('08:00:00', '17:00:00', 'Diurno', now(), NULL, 3);
 
+-- updates
+
+update usuario set setor_id = 2 where ativo = 1;

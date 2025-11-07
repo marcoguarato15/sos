@@ -1,0 +1,54 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section id="list-usuario">
+    <section class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Setor</th>
+                    <th scope="col">Papel</th>
+                    <th scope="col">Disponível</th>
+                    <th scope="col">Contato</th>
+                    <th scope="col">Criador</th>
+                    <th scope="col">Data de Criação</th>
+                    <th scope="col">Ultima Atualização</th>
+                    <th scope="col">Ultimo Login</th>
+                    <th scope="col">Deletado em</th>
+                    <th scope="col">Horario de Trabalho</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if usuarios %}
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario.id}}</td>
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.cargo}}</td>
+                    <td>{{usuario.setor.nome}}</td>
+                    <td>{{usuario.papel}}</td>
+                    <td>{{usuario.disponivel}}</td>
+                    <td>{{usuario.contato}}</td>
+                    <td>{{usuario.criador}}</td>
+                    <td>{{usuario.data_criacao}}</td>
+                    <td>{{usuario.ultima_atualizacao}}</td>
+                    <td>{{usuario.ultimo_login}}</td>
+                    <td>{{usuario.deletado_em}}</td>
+                    <td>{{usuario.horario_trabalho.horario_inicio}}/{{usuario.horario_trabalho.horario_fim}}</td>
+                    <td>
+                    <a class="btn btn-warning" href="#">Editar</a>
+                    <a class="btn btn-danger" href="#">Deletar</a>
+                </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </section>
+</section>
+{% endblock conteudo %}
