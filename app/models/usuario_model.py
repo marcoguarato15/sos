@@ -14,7 +14,7 @@ class Usuario(db.Model):
 
     ativo = db.Column(db.Boolean, nullable=False)
     papel = db.Column(db.String(50), nullable=False)
-    disponivel = db.Column(db.String(50), nullable=False)
+    disponivel = db.Column(db.Boolean, nullable=False)
     contato = db.Column(db.String(100), nullable=True)
     criador_id = db.Column(db.Integer, nullable=False)
     data_criacao = db.Column(db.DateTime, nullable=False)

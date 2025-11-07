@@ -1,1 +1,15 @@
-INSERT INTO usuario (    nome,    email,    senha,    cargo,    setor_id,    ativo,    papel,disponivel, contato,    criador_id,    data_criacao,    ultima_atualizacao,    ultimo_login,    deletado_em,    horario_trabalho_id) VALUES (    'Administrador do Sistema',    'admin@sistema.com',    '$pbkdf2-sha256$600000$8n7PGQPAWGvtHWPs/f9fqxXifE9pDSHEuHcupRQiZCw$NgWAGbm4myeHIYSFeUeslSKeA1EdnagmxzSRKuZVOFk',   'Administrador',    NULL,      1,       'admin',     'sim',      '34 99999-9999',      1,       NOW(),       NULL,     NULL,    NULL,      NULL );
+-- Usuarios
+INSERT INTO usuario (    nome,    email,    senha,    cargo,    setor_id,    ativo,    papel,disponivel, contato,    criador_id,    data_criacao,    ultima_atualizacao,    ultimo_login,    deletado_em,    horario_trabalho_id) VALUES (    'Administrador do Sistema',    'admin@sistema.com',    '$pbkdf2-sha256$600000$8n7PGQPAWGvtHWPs/f9fqxXifE9pDSHEuHcupRQiZCw$NgWAGbm4myeHIYSFeUeslSKeA1EdnagmxzSRKuZVOFk',   'Administrador',    NULL,      1,       'admin',     '1',      '34 99999-9999',      1,       NOW(),       NULL,     NULL,    NULL,      NULL );
+
+INSERT INTO usuario (    nome,    email,    senha,    cargo,    setor_id,    ativo,    papel,disponivel, contato,    criador_id,    data_criacao,    ultima_atualizacao,    ultimo_login,    deletado_em,    horario_trabalho_id) VALUES (    'Usuario do Sistema',    'user@sistema.com',    '$pbkdf2-sha256$600000$bO2dEyLkHANgbO19D4GQstb6P4cwBkCoNYYwJsQ4B0A$iTACiR5lXl1abJNNNEWWgnEyC2muEGQG1x6d70321W0',   'Técnico de Tecnologia da Informação',    NULL,      1,       'user',     '1',      '34 99999-9999',      1,       NOW(),       NULL,     NULL,    NULL,      NULL );
+
+-- setor
+
+insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('DIREDE', 3, now(), NULL);
+
+insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('DEMA', 3, now(), NULL);
+
+-- Horario de Trabalho
+
+insert into horario_trabalho (horario_inicio, horario_fim, tipo_turno, data_criacao, ultima_atualizacao, criador_id) values ('08:00:00', '17:00:00', 'Diurno', now(), NULL, 3);
+

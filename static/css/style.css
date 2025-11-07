@@ -16,8 +16,15 @@
 
 .container {
     display: grid;
-    grid-template: 1fr 90vw 1fr;
+    grid-template-columns: 1fr 90vw 1fr;
     gap: 20px;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
 }
 
 header {
@@ -25,11 +32,21 @@ header {
     display: flex;
     padding: 10px;
 }
+/* ---- MENU ---- */
+
+nav#menu {
+    width: 100%;
+}
 
 nav#menu ul {
     list-style: none;
     display: flex;
+    align-content: flex-end;
     gap: 10px;
+}
+
+nav#menu ul li#nav-perfil {
+    margin-left: auto;
 }
 
 nav#menu a {
@@ -44,4 +61,99 @@ nav#menu a {
 nav#menu a:hover {
     background-color: var(--destaque-inverso);
     color: var(--texto-inverso);
+}
+/* -------------- */
+/* ALERT */
+.alert {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-width: 1px 0px 1px 0px ;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    color: var(--texto)
+}
+
+.alert-danger {
+    background-color: #e79494;
+}
+
+.alert-success{
+    background-color: #88e688;
+}
+/* -------------- */
+/* Titulos */
+h2 {
+    text-align: center;
+    color: var(--texto);
+}
+/* -------------- */
+#img-logo {
+    height: 30px;
+    width: 37px;
+}
+
+input[type="text"], input[type="password"] {
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px inset;
+}
+
+input[type="text"]:focus , input[type="password"]:focus {
+    outline-color: var(--destaque);
+    outline: 0.5px invert;
+}
+
+section#login {
+    border-radius: 5px;
+    padding: 30px;
+    grid-column: 2;
+    background-color: lightblue;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
+
+section#conteudo {
+    grid-column: 2;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+    gap: 10px;
+}
+
+label {
+    width: 60px;
+    font-weight: 600;
+}
+
+.btn {
+    display: block;
+    padding: 5px;
+    font-weight: 600;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: var(--texto);
+}
+
+.btn a {
+    text-decoration: none;
+    color: var(--texto);
+}
+
+.btn-success {
+    background-color: #88e688;
+}
+
+.btn-warning{
+    background-color: #fafa63;
+}
+
+.btn-danger {
+    background-color: rgb(216, 34, 34);
 }

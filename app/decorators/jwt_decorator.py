@@ -15,7 +15,7 @@ def jwt_refresh(func):
                 identity = get_jwt_identity()
                 new_access_token = create_access_token(
                     identity=identity,
-                    expires_delta=timedelta(minutes=10)
+                    expires_delta=timedelta(minutes=5)
                 )
                 new_refresh_token = create_refresh_token(
                     identity=identity,
@@ -26,7 +26,7 @@ def jwt_refresh(func):
                 set_refresh_cookies(response, new_refresh_token)
                 return response
             except Exception as e:
-                flash(f"Sessão expirada. Faça login novamente. {e}", "error")
+                flash(f"Sessão expirada. Faça login novamente.", "error")
                 return redirect(url_for("login"))
         return func(*args, **kwargs)
     return wrapper

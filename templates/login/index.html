@@ -1,14 +1,53 @@
-{% extends 'base.html' %}
-{% block conteudo %}
-<section id="login">
-    <form action="{{url_for('login')}}" method="POST">
-        <label for="email">Email</label>
-        <input type="text" value="{% if email %}{{email}}{% endif %}" name="email" id="email">
+<!DOCTYPE html>
+<html lang="pt-br">
 
-        <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="https://kit.fontawesome.com/9b1cc0206a.js" crossorigin="anonymous"></script>
+</head>
 
-        <button>Acessar</button>
-    </form>
-</section>
-{% endblock conteudo %}
+<body>
+    <header style="display: flex;gap: 10px;">
+        <img id="img-logo" src="../../static/images/LOGOUFTM.png" alt="Logo UFTM">
+        <a title="Copyright da imagem" style="color: var(--texto);" href="{{url_for('copyright')}}" target="_blank" rel="external nofollow"><i class="fa-solid fa-copyright"></i></a>
+    </header>
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+    {% if category == 'success' %}
+    <div class="alert alert-success">{{msg}}</div>
+    {% elif category == 'error' %}
+    <div class="alert alert-danger">{{msg}}</div>
+    {% endif %}
+    {% endfor %}
+    <main class="login-container">
+        <section id="login">
+            <h2>Login</h2>
+            <hr>
+            <form action="{{url_for('login')}}" method="POST">
+                <div id="login-email" class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" value="{% if email %}{{email}}{% endif %}" name="email" id="email">
+                </div>
+
+                <div id="login-password" class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success btn-login" value="Acessar">
+
+                    <p class="btn btn-warning"><a id="a-cadastro" href="#">Cadastrar</a></p>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer id="login-footer">
+
+    </footer>
+
+</body>
+
+</html>
