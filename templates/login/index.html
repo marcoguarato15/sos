@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<section id="login">
+    <form action="{{url_for('login')}}" method="POST">
+        <label for="email">Email</label>
+        <input type="text" value="{% if email %}{{email}}{% endif %}" name="email" id="email">
+
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha">
+
+        <button>Acessar</button>
+    </form>
+</section>
+{% endblock conteudo %}

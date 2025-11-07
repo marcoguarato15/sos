@@ -1,8 +1,6 @@
 from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity, create_access_token
-from flask_jwt_extended import  set_access_cookies, set_refresh_cookies, create_refresh_token, get_jwt
-from flask import make_response, flash, redirect, url_for, jsonify, request
-from flask_jwt_extended.exceptions import NoAuthorizationError
-from jwt import ExpiredSignatureError
+from flask_jwt_extended import  set_access_cookies, set_refresh_cookies, create_refresh_token
+from flask import make_response, flash, redirect, url_for
 from datetime import timedelta
 from functools import wraps
 
