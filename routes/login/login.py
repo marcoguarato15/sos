@@ -14,7 +14,6 @@ def login():
 
             usuario = usuario_service.get_usuario_by_email(email)
             if usuario and usuario.decriptar_senha(senha):
-                print("ERROR: ",vars(usuario))
                 access_token = create_access_token(
                     identity=str(usuario.id),
                     expires_delta=timedelta(minutes=5)

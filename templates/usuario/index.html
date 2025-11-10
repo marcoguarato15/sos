@@ -1,7 +1,11 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
 <section id="list-usuario">
-    <section class="table">
+    <h2>Usuarios</h2>
+    <div id="usr-btn">
+        <a class="btn btn-success width-fit-content margin-5"  href="{{url_for('post_usuario')}}">Criar usuario</a>
+    </div>
+    <section class="table margin-5">
         <table>
             <thead>
                 <tr>

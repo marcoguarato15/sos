@@ -13,7 +13,7 @@
         <nav id="menu">
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Usuario</a></li>
+                <li><a href="{{url_for('usuarios')}}">Usuario</a></li>
                 <li><a href="#">Nota</a></li>
                 <li><a href="#">Demanda</a></li>
                 <li><a href="#">Horario de Trabalho</a></li>
@@ -43,6 +43,7 @@
     <footer>
 
     </footer>
-    </script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
 </html>
