@@ -5,9 +5,9 @@ INSERT INTO usuario (    nome,    email,    senha,    cargo,    setor_id,    ati
 
 -- setor
 
-insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('DIREDE', 3, now(), NULL);
+insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('DIREDE', 1, now(), NULL);
 
-insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('DEMA', 3, now(), NULL);
+insert into setor (nome, gestor_id, data_criacao, ultima_atualizacao) values ('DEMA', 1, now(), NULL);
 
 -- Horario de Trabalho
 
@@ -15,4 +15,20 @@ insert into horario_trabalho (horario_inicio, horario_fim, tipo_turno, data_cria
 
 -- updates
 
-update usuario set setor_id = 2 where ativo = 1;
+update usuario set setor_id = 1 where id = 2;
+update usuario set setor_id = 2 where id = 1;
+
+update usuario set horario_trabalho_id = 1;
+
+-- remove foreign keys
+
+ show create table usuario;
+
+ alter table nome_da_tabela drop foreign key nome_da_constraint
+
+ -- alembic create foreign key
+
+op.create_foreign_key(
+    # nome da chave estrangeira, tabela-1, tabela-2, campo de referência
+    'fk_setor_gestor', 'setor', 'usuario', ['gestor_id'], ['id']
+)
