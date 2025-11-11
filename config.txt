@@ -1,0 +1,14 @@
+USERNAME = 'db_username'
+PASSWORD = r'db_password'
+SERVER = 'localhost'
+DB = 'db_name'
+
+SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{SERVER}/{DB}'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+SECRET_KEY="secret_key"
+
+JWT_TOKEN_LOCATION = ["cookies"]
+JWT_ACCESS_COOKIE_NAME = "access_token_cookie"
+
+DEMANDAS_API_KEY = "api_key"
