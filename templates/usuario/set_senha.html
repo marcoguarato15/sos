@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="https://kit.fontawesome.com/9b1cc0206a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header style="display: flex;gap: 10px;">
+        <img id="img-logo" src="../../static/images/LOGOUFTM.png" alt="Logo UFTM">
+        <a title="Copyright da imagem" style="color: var(--texto);" href="{{url_for('copyright')}}" target="_blank" rel="external nofollow"><i class="fa-solid fa-copyright"></i></a>
+    </header>
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+    {% if category == 'success' %}
+    <div class="alert alert-success">{{msg}}</div>
+    {% elif category == 'error' %}
+    <div class="alert alert-danger">{{msg}}</div>
+    {% endif %}
+    {% endfor %}
+    <main class="login-container">
+        <section id="login">
+            <h1>Alterar senha</h1>
+            <hr>
+            <form action="{{url_for('set_senha')}}" method="POST">
+                <div class="form-group">
+                    <label for="nova-senha">Senha</label>
+                    <input type="password" value="{% if senha %}{{senha}}{% endif %}" name="nova-senha" id="nova-senha">
+                </div>
+
+                <div class="form-group">
+                    <label for="nova-senha-2">Repita</label>
+                    <input type="password" name="nova-senha-2" id="nova-senha-2">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Alterar senha">
+                </div>
+            </form>
+        </section>
+    </main>
+
+
+</body>
+
+</html>

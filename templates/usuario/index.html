@@ -1,9 +1,11 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
-<section id="list-usuario">
-    <h2>Usuarios</h2>
-    <div id="usr-btn">
-        <a class="btn btn-success width-fit-content margin-5"  href="{{url_for('post_usuario')}}">Criar usuario</a>
+<section id="list-usuario" class="border-radius">
+    <div class="border-bottom">
+        <h2>Usuarios</h2>
+    </div>
+    <div id="usr-btn" class="border-bottom">
+        <a class="btn btn-success fit-content margin-5" href="{{url_for('post_usuario')}}">Criar usuario</a>
     </div>
     <section class="table margin-5">
         <table>
@@ -21,7 +23,6 @@
                     <th scope="col">Data de Criação</th>
                     <th scope="col">Ultima Atualização</th>
                     <th scope="col">Ultimo Login</th>
-                    <th scope="col">Deletado em</th>
                     <th scope="col">Horario de Trabalho</th>
                     <th scope="col">Ações</th>
                 </tr>
@@ -36,18 +37,17 @@
                     <td>{{usuario.cargo}}</td>
                     <td>{{usuario.setor.nome}}</td>
                     <td>{{usuario.papel}}</td>
-                    <td>{{usuario.disponivel}}</td>
+                    <td>{% if usuario.disponivel %}Sim{% else %}Não{% endif %}</td>
                     <td>{{usuario.contato}}</td>
                     <td>{{usuario.criador}}</td>
                     <td>{{usuario.data_criacao}}</td>
                     <td>{{usuario.ultima_atualizacao}}</td>
                     <td>{{usuario.ultimo_login}}</td>
-                    <td>{{usuario.deletado_em}}</td>
                     <td>{{usuario.horario_trabalho.horario_inicio}}/{{usuario.horario_trabalho.horario_fim}}</td>
                     <td>
-                    <a class="btn btn-warning" href="#">Editar</a>
-                    <a class="btn btn-danger" href="#">Deletar</a>
-                </td>
+                        <a class="btn btn-warning" href="{{url_for('put_usuario', id=usuario.id)}}">Editar</a>
+                        <a class="btn btn-danger" href="#">Deletar</a>
+                    </td>
                 </tr>
                 {% endfor %}
                 {% endif %}

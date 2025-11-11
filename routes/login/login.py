@@ -13,14 +13,20 @@ def login():
             ## (REGEX) Fazer verificação de regex para depois aceitar valores de busca para o banco
 
             usuario = usuario_service.get_usuario_by_email(email)
+            if(senha == "123456"):
+                alter = "True"
+            else:
+                alter = "False"
             if usuario and usuario.decriptar_senha(senha):
+                usuario_service.set_ultimo_login(usuario)
                 access_token = create_access_token(
                     identity=str(usuario.id),
-                    expires_delta=timedelta(minutes=5)
+                    expires_delta=timedelta(minutes=5),
+                    additional_claims={"alter":alter}
                 )
                 refresh_token = create_refresh_token(
                     identity=str(usuario.id),
-                    expires_delta=timedelta(minutes=15)
+                    expires_delta=timedelta(minutes=15),
                 )
                 response = make_response(redirect(url_for("index")))
                 set_access_cookies(response, access_token)
