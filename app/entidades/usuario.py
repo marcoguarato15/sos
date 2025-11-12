@@ -1,7 +1,7 @@
 from datetime import datetime
 
 class Usuario():
-    def __init__(self, nome, email, senha, cargo, setor_id, ativo, papel, disponivel, contato, criador_id, horario_trabalho_id=None, ultima_atualizacao=None, ultimo_login=None, deletado_em=None):
+    def __init__(self, id_demanda, nome, email, senha, cargo, setor_id, ativo, papel, disponivel, contato, criador_id, horario_trabalho_id=None, ultima_atualizacao=None, ultimo_login=None, deletado_em=None):
         self.__nome = nome
         self.__email = email
         self.__senha = senha
@@ -17,6 +17,14 @@ class Usuario():
         self.__ultimo_login = ultimo_login
         self.__deletado_em = deletado_em
         self.__horario_trabalho_id = horario_trabalho_id
+
+    @property
+    def id_demanda(self):
+        return self.__id_demanda
+    
+    @id_demanda.setter
+    def id_demanda(self, id_demanda):
+        self.__id_demanda = id_demanda
 
     @property
     def nome(self):

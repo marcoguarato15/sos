@@ -57,7 +57,7 @@
 .split-content-left {
     width: 49%;
     float: left;
-    min-width: 250px;
+    min-width: 300px;
     align-items: center;
     margin: 0px auto;
     justify-content: center;
@@ -68,7 +68,7 @@
     width: 49%;
     float: right;
     margin: 0px auto;
-    min-width: 250px;
+    min-width: 300px;
 }
 /* -------------- */
 .login-container {
@@ -204,7 +204,7 @@ select {
 label {
     display: inline-block;
     text-align: end;
-    width: 90px;
+    width: 100px;
 }
 
 .form {

@@ -4,10 +4,7 @@ from datetime import datetime
 from app import db
 
 def get_usuarios():
-    usuarios = Usuario.query.options(
-        joinedload(Usuario.setor),
-        joinedload(Usuario.horario_trabalho)
-    ).filter_by(ativo=True).all()
+    usuarios = Usuario.query.filter_by(ativo=True).all()
     return usuarios
 
 def get_usuario_by_email(email):
@@ -30,8 +27,9 @@ def add_usuario(usuario):
     db.session.add(usr)
     db.session.commit()
 
-def put_usuario(nome, email, cargo, setor_id, papel, disponivel, contato, horario_trabalho_id, id):
+def put_usuario(id_demanda,nome, email, cargo, setor_id, papel, disponivel, contato, horario_trabalho_id, id):
     usuario = get_usuario_by_id(id)
+    usuario.id_demanda = id_demanda
     usuario.nome = nome
     usuario.email = email
     usuario.cargo = cargo
@@ -40,13 +38,20 @@ def put_usuario(nome, email, cargo, setor_id, papel, disponivel, contato, horari
     usuario.disponivel = disponivel
     usuario.contato = contato
     usuario.horario_trabalho_id = horario_trabalho_id
-    usuario.ultima_alteracao = datetime.now()
+    usuario.ultima_atualizacao = datetime.now()
     db.session.commit()
+
+    return usuario
 
 def del_usuario(id):
     usuario = get_usuario_by_id(id)
     usuario.ativo = False
     usuario.deletado_em = datetime.now()
+    db.session.commit()
+
+def set_ultima_atualizacao(id):
+    usuario = get_usuario_by_id(id)
+    usuario.ultima_atualizacao = datetime.now()
     db.session.commit()
 
 def set_senha(usuario,senha):

@@ -46,7 +46,7 @@
                     <td>{{usuario.horario_trabalho.horario_inicio}}/{{usuario.horario_trabalho.horario_fim}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{url_for('put_usuario', id=usuario.id)}}">Editar</a>
-                        <a class="btn btn-danger" href="#">Deletar</a>
+                        <a class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir o usuário {{usuario.nome}}')" href="{{url_for('del_usuario', id=usuario.id)}}">Deletar</a>
                     </td>
                 </tr>
                 {% endfor %}

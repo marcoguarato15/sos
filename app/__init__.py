@@ -18,4 +18,4 @@ migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
 
-from .models import usuario_model, horario_trabalho_model, setor_model
+from .models import usuario_model, horario_trabalho_model, setor_model, status_model, titulo_projeto_model, tipo_model, demanda_model, custom_field_model, demanda_custom_value_model, categoria_model, prioridade_model

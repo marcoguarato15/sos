@@ -11,4 +11,4 @@ class HorarioTrabalho(db.Model):
     ultima_atualizacao = db.Column(db.DateTime, nullable=True)
 
     criador_id = db.Column(db.Integer, db.ForeignKey("usuario.id"))
-    criador = db.relationship("Usuario", backref=db.backref("usuario_criador", lazy="dynamic"), foreign_keys=[criador_id])
+    criador = db.relationship("Usuario", backref=db.backref("usuario_criador"), foreign_keys=[criador_id])

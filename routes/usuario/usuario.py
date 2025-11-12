@@ -33,6 +33,7 @@ def post_usuario():
                 print(nome, email, disponivel, papel, setor_id, cargo, contato, horario_trabalho_id)
                 usuario_service.add_usuario(Usuario(nome=nome, email=email,senha="123456", cargo=cargo ,setor_id=setor_id, ativo=True, papel=papel, disponivel=disponivel, contato=contato, criador_id=int(criador_id),horario_trabalho_id=horario_trabalho_id))
                 flash("Cadastrado com sucesso","success")
+                return redirect(url_for('usuarios'))
 
     else:
         flash("Usuario sem permissão","error")
@@ -51,10 +52,10 @@ def put_usuario(id):
         if request.method == "POST":
             if (nome := request.form.get('nome')) and (email := request.form.get('email')) and (disponivel := request.form.get('disponivel')) and (papel := request.form.get('papel')) and (setor_id := request.form.get('setor_id')) and (horario_trabalho_id := request.form.get('horario_trabalho_id')):
                 cargo = request.form.get('cargo')
-                disponivel =  True if disponivel == 1 else False
+                disponivel =  True if disponivel == "1" else False
                 contato = request.form.get('contato')
-
-                usuario_service.put_usuario(nome=nome, email=email, cargo=cargo,setor_id=setor_id, papel=papel, disponivel=disponivel, contato=contato, horario_trabalho_id=horario_trabalho_id, id=id)
+                id_demanda = 0 if request.form.get('id_demanda').strip() == '' else int(request.form.get('id_demanda'))
+                usuario = usuario_service.put_usuario(id_demanda=id_demanda,nome=nome, email=email, cargo=cargo,setor_id=setor_id, papel=papel, disponivel=disponivel, contato=contato, horario_trabalho_id=horario_trabalho_id, id=id)
                 flash("Alteração feita com sucesso","success")
 
             else:
@@ -72,6 +73,7 @@ def del_usuario(id):
     if claims["papel"] == "admin":
         usuario_service.del_usuario(id)
         flash("Sucesso em deletar usuario","success")
+        return redirect(url_for('usuarios'))
     else:
         flash("Usuario sem permissão","error")
         return redirect(url_for('index'))
