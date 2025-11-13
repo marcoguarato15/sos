@@ -64,7 +64,7 @@ def put_usuario(id):
     else:
         flash("Usuario sem permissão", "error")
         return redirect(url_for("index"))
-    return render_template("usuario/put_usuario.html", usuario=usuario, setores=setores, horarios_trabalho=horarios_trabalho)
+    return render_template("usuario/adm_put_usuario.html", usuario=usuario, setores=setores, horarios_trabalho=horarios_trabalho)
 
 @app.route('/del/usuario/<int:id>')
 @jwt_refresh

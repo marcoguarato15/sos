@@ -1,10 +1,11 @@
 from app import app
-import requests, json
+import requests
+from flask import render_template, redirect, url_for
 from app.decorators.jwt_decorator import jwt_refresh
+from app.services import demanda_service
 
 @app.route('/get/demandas')
-@jwt_refresh
-def demandas():
+def get_demandas():
     api_key = app.config["DEMANDAS_API_KEY"]
     ## URL para todas solicitações
     url = f"https://demandas.uftm.edu.br/projects/projetos-de-redes-digitais/issues.json?key=de1d79fe2e30e992e9aec6f8629fdec69b8e30c4&include=custom_fields&include=journals&status_id=2&limit=20"
@@ -66,7 +67,7 @@ def demandas():
             print(f"Categoria- ID: {i["category"]["id"]}| name: {i["category"]["name"]}")
             """
             !! separado por project-name
-            -- id das categorias - infraestrutura de rede
+            -- id das categorias - infraestrutura de rede - id-10
             297 - Backbone
             563 - DNS
             33 - Dúvida
@@ -80,13 +81,13 @@ def demandas():
             34 - Treinamento
             37 - WIFI
 
-            -- id das categorias - serviços de rede
+            -- id das categorias - serviços de rede - id-8
             29 - Dúvida
             566 - Firewall
             556 - Suporte
             30 - Treinamento
 
-            -- id das categorias - projetos de redes digitais - base
+            -- id das categorias - projetos de redes digitais - id-6
             330 - Backbone
             552 - Base de Conhecimento
             116 - Dúvida
@@ -173,4 +174,11 @@ def demandas():
 
         # https://demandas.uftm.edu.br/issues/86101.json?key=de1d79fe2e30e992e9aec6f8629fdec69b8e30c4&include-custom_fields&include=journals,attachments
         # fazer um for para cada demanda, para adicionar os campos custom fields e também os attachments, journals não sei se é necessário por enquanto
-    return "<p>aqui</p>"
+
+        return "<p>aqui</p>"
+
+@app.route('/demandas')
+@jwt_refresh
+def demandas():
+    demanda_service.add_new_demandas()
+    return render_template('demanda/index.html')

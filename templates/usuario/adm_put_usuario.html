@@ -1,0 +1,90 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section id="post-usuario-container" class="border-radius">
+    <div class="border-bottom">
+        <h2>Alterar Usuario</h2>
+    </div>
+    <form class="form" action="{{url_for('put_usuario', id=usuario.id)}}" method="POST">
+        <div class="split-content-left">
+            <div class="form-group">
+                <label for="nome">Nome<span class="required">*</span></label>
+                <input type="text" value="{{usuario.nome}}" name="nome" id="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email<span class="required">*</span></label>
+                <input type="email" value="{{usuario.email}}" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="disponivel">Disponível<span class="required">*</span></label>
+                <select name="disponivel" id="disponivel">
+                    <option value="1" {% if usuario.disponivel == True %} selected {% endif %}>Sim</option>
+                    <option value="0" {% if usuario.disponivel == False %} selected {% endif %}>Não</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="papel">Papel<span class="required">*</span></label>
+                <select name="papel" id="papel">
+                    <option value="user" {% if usuario.papel == 'user' %}selected{% endif %}>Usuário</option>
+                    <option value="admin" {% if usuario.papel == 'admin' %}selected{% endif %}>Administrador</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="split-content-right">
+
+            <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <input type="text" value="{{usuario.cargo}}" name="cargo" id="cargo">
+            </div>
+
+            <div class="form-group">
+                {% if setores %}
+                <label for="setor_id">Setor<span class="required">*</span></label>
+                <select name="setor_id" id="setor_id" required>
+                    
+                    {% for setor in setores %}
+                    <option value="{{setor.id}}" {% if usuario.setor_id == setor.id %}selected{% endif %}>{{setor.nome}}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <p class="required">Crie um setor!</p>
+                {% endif %}
+
+            </div>
+
+            <div class="form-group">
+                <label for="contato">Contato</label>
+                <input type="text" value="{{usuario.contato}}" name="contato" id="contato">
+            </div>
+
+            <div class="form-group">
+                {% if horarios_trabalho %}
+                <label for="hprario_trabalho_id">Horário<span class="required">*</span></label>
+                <select name="horario_trabalho_id" id="horario_trabalho_id">
+                    {% for horario_trabalho in horarios_trabalho %}
+                    <option value="{{horario_trabalho.id}}" {% if usuario.horario_trabalho_id == horario_trabalho.id %}selected{% endif %}>
+                        {{horario_trabalho.horario_inicio}}/{{horario_trabalho.horario_fim}}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <p class="required">Crie um horario de trabalho!</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_demanda">ID demanda</label>
+            <input type="text" {%if usuario.id_demanda%}value="{{usuario.id_demanda}}"{% endif %} name="id_demanda" id="id_demanda">
+        </div>
+
+        <div class="form-group border-top" style="width: 100%;">
+            <input type="submit" class="btn btn-success" value="Alterar">
+
+            <a href="#" class="btn btn-warning" onclick="clearForms()">Reverter</a>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}

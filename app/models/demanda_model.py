@@ -14,10 +14,10 @@ class Demanda(db.Model):
     porcentagem_feita = db.Column(db.Integer, nullable=False)
 
     author_id = db.Column(db.ForeignKey("usuario.id"))
-    author = db.relationship("Usuario", backref=db.backref("demanda_criada", lazy="joined"), foreign_keys=[author_id])
+    author = db.relationship("Usuario", backref=db.backref("demanda_criada"), foreign_keys=[author_id])
 
     atribuido_para_id = db.Column(db.ForeignKey("usuario.id"))
-    atribuido_para = db.relationship("Usuario", backref=db.backref("demanda_atribuida", lazy="joined"), foreign_keys=[atribuido_para_id])
+    atribuido_para = db.relationship("Usuario", backref=db.backref("demanda_atribuida"), foreign_keys=[atribuido_para_id])
 
     status_id = db.Column(db.ForeignKey("status.id"))
     status = db.relationship("Status", backref=db.backref("demanda"), foreign_keys=[status_id])

@@ -94,6 +94,12 @@ section#conteudo {
     grid-column: 2;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
 }
+/* ---- Containers ---- */
+section#list-demanda-container {
+    margin-top: 15px;
+    grid-column: 2;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
 
 section#list-usuario {
     margin-top: 15px;

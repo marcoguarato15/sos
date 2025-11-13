@@ -5,7 +5,7 @@ from app.services import usuario_service
 from routes import index
 from routes.login import login
 from routes.usuario import usuario
-from routes.demandas import index
+from routes.demandas import demanda
 # @app.route("/")
 # def index():
 #     return render_template('base.html')
