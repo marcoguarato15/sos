@@ -8,7 +8,7 @@ from app.services import demanda_service
 def get_demandas():
     api_key = app.config["DEMANDAS_API_KEY"]
     ## URL para todas solicitações
-    url = f"https://demandas.uftm.edu.br/projects/projetos-de-redes-digitais/issues.json?key=de1d79fe2e30e992e9aec6f8629fdec69b8e30c4&include=custom_fields&include=journals&status_id=2&limit=20"
+    url = f"https://demandas.uftm.edu.br/projects/projetos-de-redes-digitais/issues.json?key=de1d79fe2e30e992e9aec6f8629fdec69b8e30c4&include=custom_fields&limit=1"
     ## URL para solicitação específica (possível visualização de journals(alerações, inclusões) o que não é possível em uma busca geral)
 
     res = requests.get(url).json()

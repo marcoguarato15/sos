@@ -5,7 +5,7 @@ class Usuario(db.Model):
     __tablename__ = "usuario"
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-    id_demanda = db.Column(db.Integer, nullable=True)
+    id_usuario = db.Column(db.Integer, nullable=True)
     nome = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), nullable=False)
     senha = db.Column(db.String(255), nullable=False)

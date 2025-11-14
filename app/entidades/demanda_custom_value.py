@@ -1,24 +1,24 @@
 class DemandaCustomValue():
-    def __init__(self, texto, custom_fields_id, demanda_id):
-        self.__texto = texto
-        self.__custom_fields_id = custom_fields_id
+    def __init__(self, valor, custom_field_id, demanda_id):
+        self.__valor = valor
+        self.__custom_field_id = custom_field_id
         self.__demanda_id = demanda_id
 
     @property
-    def texto(self):
-        return self.__texto
+    def valor(self):
+        return self.__valor
     
-    @texto.setter
-    def texto(self, texto):
-        self.__texto = texto
+    @valor.setter
+    def valor(self, valor):
+        self.__valor = valor
 
     @property
-    def custom_fields_id(self):
-        return self.__custom_fields_id
+    def custom_field_id(self):
+        return self.__custom_field_id
     
-    @custom_fields_id.setter
-    def custom_fields_id(self, custom_fields_id):
-        self.__custom_fields_id = custom_fields_id
+    @custom_field_id.setter
+    def custom_field_id(self, custom_field_id):
+        self.__custom_field_id = custom_field_id
     
     @property
     def demanda_id(self):

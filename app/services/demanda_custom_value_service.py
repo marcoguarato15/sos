@@ -6,7 +6,7 @@ def get_demanda_custom_value():
     return demanda_custom_values
 
 def add_demanda_custom_value(demanda_custom_value):
-    demanda_custom_value_obj = DemandaCustomValue(nome=demanda_custom_value.nome, demanda_id=demanda_custom_value.demanda_id, custom_field_id=demanda_custom_value.custom_field_id)
+    demanda_custom_value_obj = DemandaCustomValue(valor=demanda_custom_value.valor, demanda_id=demanda_custom_value.demanda_id, custom_field_id=demanda_custom_value.custom_field_id)
     db.session.add(demanda_custom_value_obj)
     db.session.commit()
 
