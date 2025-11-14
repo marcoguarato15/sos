@@ -32,3 +32,95 @@ op.create_foreign_key(
     # nome da chave estrangeira, tabela-1, tabela-2, campo de referência
     'fk_setor_gestor', 'setor', 'usuario', ['gestor_id'], ['id']
 )
+
+---- CAMPOS DEMANDAS INSERT geral
+-- titulo projeto
+insert into titulo_projeto (id_titulo_projeto, nome) values (6, 'Projetos de Redes Digitais');
+
+insert into titulo_projeto (id_titulo_projeto, nome) values (8, 'Serviços de rede');            
+
+insert into titulo_projeto (id_titulo_projeto, nome) values (10, 'Infraestrutura de rede'); 
+
+-- tipo (tracker)
+insert into tipo (id_tipo, nome) values (6, 'instalação'); 
+insert into tipo (id_tipo, nome) values (2, 'Nova Funcionalidade');
+insert into tipo (id_tipo, nome) values (1, 'Falha');
+insert into tipo (id_tipo, nome) values (3, 'Suporte');
+insert into tipo (id_tipo, nome) values (7, 'Manutenção');
+insert into tipo (id_tipo, nome) values (4, 'Adequação');
+insert into tipo (id_tipo, nome) values (10, 'Documentação');
+insert into tipo (id_tipo, nome) values (8, 'Contas de usuário');
+insert into tipo (id_tipo, nome) values (5, 'Reunião');
+
+-- status
+insert into status (id_status, nome) values (1, 'Nova');
+insert into status (id_status, nome) values (2, 'Em Andamento');
+insert into status (id_status, nome) values (8, 'Suspensa - Pendência do solic.');
+insert into status (id_status, nome) values (9, 'Suspensa - Motivo técnico');
+insert into status (id_status, nome) values (10, 'Suspensa - Alt. de prioridade');
+insert into status (id_status, nome) values (5, 'Fechada');
+insert into status (id_status, nome) values (11, 'Fechada - Inconclusa');
+insert into status (id_status, nome) values (6, 'Indeferida');
+
+-- prioridade
+insert into prioridade (id_prioridade, nome) values (1, 'Baixa');
+insert into prioridade (id_prioridade, nome) values (2, 'Normal');
+insert into prioridade (id_prioridade, nome) values (3, 'Alta');
+insert into prioridade (id_prioridade, nome) values (4, 'Urgente');
+
+-- categoria (verificar os ids do titulo_projeto para cada categoria pois há diferenças entre cada titulo_projeto para id_categoria)
+-- titulo_projeto_id = 10 (infraestrutura de rede)
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (297, 'Backbone', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (553, 'DNS', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (33, 'Dúvida', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (449, 'Firewall', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (35, 'Ponto de rede', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (553, 'Rack', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (317, 'Relógio de ponto', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (471, 'Requisição', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (36, 'Switch/Hub', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (300, 'Telefonia', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (34, 'Treinamento', 3);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (37, 'WIFI', 3);
+
+-- titulo_projeto_id = 8 (Serviços de rede id)
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (29, 'Dúvida', 2);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (566, 'Firewall', 2);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (556, 'Suporte', 2);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (30, 'Treinamento', 2);
+
+-- titulo_projeto_id = 6 (Projetos de Redes Digitais)
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (330, 'Backbone', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (552, 'Base de Conhecimento', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (116, 'Dúvida', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (448, 'Firewall', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (565, 'Gestão/Fiscal. Contratos', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (188, 'Ponto de Rede', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (299, 'Relógio de Ponto', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (555, 'Servidor de Email', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (390, 'Telefonia', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (117, 'Treinamento', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (554, 'Vigilância', 1);
+insert into categoria (id_categoria, nome, titulo_projeto_id) values (562, 'WIFI', 1);
+
+-- Custom Fields
+insert into custom_field (id_custom_field, nome) values (19, 'Retirado por');
+insert into custom_field (id_custom_field, nome) values (20, 'Entregue para');
+insert into custom_field (id_custom_field, nome) values (21, 'Especificação na Entrada');
+insert into custom_field (id_custom_field, nome) values (22, 'Especificação na Saída');
+insert into custom_field (id_custom_field, nome) values (14, 'Cód. Patrimônio');
+insert into custom_field (id_custom_field, nome) values (16, 'Local');
+insert into custom_field (id_custom_field, nome) values (50, 'Local (Redes)');
+insert into custom_field (id_custom_field, nome) values (17, 'Depto. / Andar / Sala');
+insert into custom_field (id_custom_field, nome) values (34, 'Inst. Patrimônio');
+insert into custom_field (id_custom_field, nome) values (9, 'Solução');
+insert into custom_field (id_custom_field, nome) values (63, 'Motivo do indeferimento');
+insert into custom_field (id_custom_field, nome) values (64, 'Motivo da Inconclusão');
+insert into custom_field (id_custom_field, nome) values (61, '#Pontos');
+insert into custom_field (id_custom_field, nome) values (26, 'Origem');
+insert into custom_field (id_custom_field, nome) values (35, 'Mem/Ofício');
+insert into custom_field (id_custom_field, nome) values (15, 'Solicitante/Contato');
+insert into custom_field (id_custom_field, nome) values (36, 'Tel./Ramal');
+insert into custom_field (id_custom_field, nome) values (41, 'owner-email');
+insert into custom_field (id_custom_field, nome) values (24, 'Data da solicitação');
+insert into custom_field (id_custom_field, nome) values (25, 'Data da resposta');

@@ -15,3 +15,7 @@ def put_categoria(id, nome, id_categoria, titulo_projeto_id):
     categoria.id_categoria = id_categoria
     categoria.titulo_projeto_id = titulo_projeto_id
     db.session.commit()
+
+def get_categoria_by_id_categoria(id_categoria):
+    categoria = Categoria.query.filter_by(id_categoria=id_categoria).first()
+    return categoria

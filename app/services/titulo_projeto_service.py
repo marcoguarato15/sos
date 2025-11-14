@@ -17,3 +17,7 @@ def put_titulo_projeto(id, id_titulo_projeto, nome):
     titulo.id_titulo_projeto = id_titulo_projeto
     titulo.nome = nome
     db.session.commit()
+
+def get_titulo_projeto_by_id_titulo_projeto(id_titulo_projeto):
+    titulo_projeto = TituloProjeto.query.filter_by(id_titulo_projeto=id_titulo_projeto).first()
+    return titulo_projeto

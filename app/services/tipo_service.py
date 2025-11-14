@@ -17,3 +17,7 @@ def put_tipo(id, id_tipo, nome):
     tipo.id_tipo = id_tipo
     tipo.nome = nome
     db.session.commit()
+
+def get_tipo_by_id_tipo(id_tipo):
+    tipo = Tipo.query.filter_by(id_tipo=id_tipo).first()
+    return tipo

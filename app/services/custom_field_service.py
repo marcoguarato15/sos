@@ -15,3 +15,7 @@ def put_custom_field(id, nome, id_custom_field):
     custom_field.nome = nome
     custom_field.id_custom_field = id_custom_field
     db.session.commit()
+
+def get_custom_field_by_id_custom_field(id_custom_field):
+    custom_field = CustomField.query.filter_by(id_custom_field=id_custom_field).first()
+    return custom_field

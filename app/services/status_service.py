@@ -17,3 +17,7 @@ def put_status(id, id_status, nome):
     status.id_status = id_status
     status.nome = nome
     db.session.commit()
+
+def get_status_by_id_status(id_status):
+    status = Status.query.filter_by(id_status=id_status).first()
+    return status

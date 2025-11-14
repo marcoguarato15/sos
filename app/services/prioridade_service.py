@@ -17,3 +17,7 @@ def put_prioridade(id, id_prioridade, nome):
     prioridade.id_prioridade = id_prioridade
     prioridade.nome = nome
     db.session.commit()
+
+def get_prioridade_by_id_prioridade(id_prioridade):
+    prioridade = Prioridade.query.filter_by(id_prioridade=id_prioridade).first()
+    return prioridade

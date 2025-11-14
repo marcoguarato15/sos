@@ -2,6 +2,10 @@ from app import db, app
 from app.models.demanda_model import Demanda
 import requests
 
+def get_demandas():
+    demandas = Demanda.query.all()
+    return demandas
+
 def add_new_demandas():
     api_key = app.config["DEMANDAS_API_KEY"]
     ## URL para todas solicitações
