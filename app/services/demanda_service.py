@@ -22,10 +22,10 @@ def add_new_demandas():
     prioridades = prioridade_service.get_prioridade()
     categorias = categoria_service.get_categoria()
     custom_fields = custom_field_service.get_custom_field()
-
+    usuarios = usuario_service.get_usuarios()
+    demandas_atuais = get_demandas()
+    id_demandas_atuais = [i.id_demanda for i in demandas_atuais]
     for issue in issues:
-        demandas_atuais = get_demandas()
-        id_demandas_atuais = [i.id_demanda for i in demandas_atuais]
 
         id_demanda = None
         titulo_projeto_id = None
@@ -37,6 +37,7 @@ def add_new_demandas():
         prioridade_id = None
         status_id = None
         data_conclusao = None
+        atribuido_para = None
         print(issue["id"])
         
 
@@ -64,9 +65,17 @@ def add_new_demandas():
                 for p in prioridades:
                     if p.id_prioridade == issue["priority"]["id"]:
                         prioridade_id = p.id
+            if "category" in issue:
+                for c in categorias:
+                    if c.id_categoria == issue["category"]["id"]:
+                        categoria_id = c.id
             # alterar verificação ao colocar todos usuários
             if "author" in issue:
                 author_id = 1
+            if "assigned_to" in issue:
+                for u in usuarios:
+                    if u.id_usuario == issue["assigned_to"]["id"]:
+                        usuario = u.id
             if "subject" in issue:
                 titulo = issue["subject"]
             if "description" in issue:
@@ -84,11 +93,11 @@ def add_new_demandas():
                 data_atualizacao = replace_datetime_utc(issue["updated_on"])
             if "closed_on" in issue:
                 data_conclusao = replace_datetime_utc(issue["closed_on"])
-
-            demanda = Demanda(id_demanda=id_demanda, titulo=titulo,status_id=status_id, descricao=descricao, data_inicio=data_inicio, data_criacao=data_criacao, data_estimada=data_estimada,prioridade_id=prioridade_id, data_atualizacao=data_atualizacao, titulo_projeto_id=titulo_projeto_id, porcentagem_feita=porcentagem_feita, author_id=author_id, tipo_id=tipo_id,data_conclusao=data_conclusao)
+            demanda = Demanda(id_demanda=id_demanda, titulo=titulo,categoria_id=categoria_id, status_id=status_id, descricao=descricao, atribuido_para=atribuido_para, data_inicio=data_inicio, data_criacao=data_criacao, data_estimada=data_estimada,prioridade_id=prioridade_id, data_atualizacao=data_atualizacao, titulo_projeto_id=titulo_projeto_id, porcentagem_feita=porcentagem_feita, author_id=author_id, tipo_id=tipo_id,data_conclusao=data_conclusao)
 
             db.session.add(demanda)
             db.session.commit()
+            id_demandas_atuais.append(demanda.id_demanda)
 
             demanda_db = get_demanda_by_id_demanda(id_demanda)
             id_demanda_db = demanda_db.id
@@ -100,13 +109,14 @@ def add_new_demandas():
                     # verifica se são o mesmo e quando for o mesmo adiciona o valor com o id da demanda corretamente
                     if cf["id"] == cf_obj.id_custom_field:
                         # passa na verificação e verifica se tem valor
-                        if "value" in cf is not "":
+                        if "value" in cf and cf["value"] != "":
                             demanda_custom_value = DemandaCustomValue(valor=cf["value"], demanda_id=id_demanda_db, custom_field_id=cf_obj.id)
                             demanda_custom_value_service.add_demanda_custom_value(demanda_custom_value)
+            
         else:
                 print(f"{issue["id"]} já incluída")
 
-    pass
+    
 
 def get_demandas():
     demandas = Demanda.query.all()

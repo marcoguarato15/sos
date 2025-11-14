@@ -1,6 +1,43 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
-<section id="list-demanda-container">
-    
+<section id="list-demanda-container" class="border-radius">
+    <div class="border-bottom">
+        <h2>Demandas</h2>
+    </div>
+    <div id="usr-btn" class="border-bottom">
+        <a class="btn btn-success fit-content margin-5" href="#">Buscar novas demandas</a>
+    </div>
+    <section class="table margin-5">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">ID demanda</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Prioridade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if demandas %}
+                {% for demanda in demandas %}
+                <tr>
+                    <td>{{demanda.id}}</td>
+                    <td>{{demanda.id_demanda}}</td>
+                    <td>{{demanda.titulo}}</td>
+                    <td>{{demanda.author.nome}}</td>
+                    <td>{{demanda.status.nome}}</td>
+                    <td>{{demanda.prioridade.nome}}</td>
+                    <!-- <td>
+                        <a class="btn btn-warning" href="#">Editar</a>
+                        <a class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir a demanda {{demanda.id_demanda}}')" href="#">Deletar</a>
+                    </td> -->
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </section>
 </section>
 {% endblock conteudo %}

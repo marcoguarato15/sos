@@ -60,3 +60,6 @@ def set_senha(usuario,senha):
     usuario.senha = usr.senha
     db.session.commit()
     
+def get_usuario_by_id_usuario(id_usuario):
+    usuario = Usuario.query.filter_by(id_usuario=id_usuario).first()
+    return usuario
