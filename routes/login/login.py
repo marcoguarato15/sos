@@ -21,7 +21,7 @@ def login():
                 usuario_service.set_ultimo_login(usuario)
                 access_token = create_access_token(
                     identity=str(usuario.id),
-                    expires_delta=timedelta(minutes=5),
+                    expires_delta=timedelta(minutes=1),
                     additional_claims={"alter":alter}
                 )
                 refresh_token = create_refresh_token(

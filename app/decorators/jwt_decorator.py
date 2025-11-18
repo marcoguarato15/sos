@@ -15,7 +15,7 @@ def jwt_refresh(func):
                 identity = get_jwt_identity()
                 new_access_token = create_access_token(
                     identity=identity,
-                    expires_delta=timedelta(minutes=5)
+                    expires_delta=timedelta(minutes=1)
                 )
                 new_refresh_token = create_refresh_token(
                     identity=identity,

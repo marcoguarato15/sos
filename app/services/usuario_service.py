@@ -1,5 +1,4 @@
 from ..models.usuario_model import Usuario
-from sqlalchemy.orm import joinedload
 from datetime import datetime
 from app import db
 

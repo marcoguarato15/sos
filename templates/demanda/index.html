@@ -4,8 +4,9 @@
     <div class="border-bottom">
         <h2>Demandas</h2>
     </div>
-    <div id="usr-btn" class="border-bottom">
-        <a class="btn btn-success fit-content margin-5" href="#">Buscar novas demandas</a>
+    <div style="display: flex;"class="border-bottom">
+        <a class="btn btn-success fit-content margin-5" href="{{url_for('get_demandas')}}">Buscar novas demandas</a>
+        <a class="btn btn-warning fit-content margin-5" href="{{url_for('put_demandas')}}">Verificar atualizações</a>
     </div>
     <section class="table margin-5">
         <table>
