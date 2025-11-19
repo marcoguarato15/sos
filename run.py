@@ -6,6 +6,8 @@ from routes import index
 from routes.login import login
 from routes.usuario import usuario
 from routes.demandas import demanda
+from routes.nota import nota
+
 # @app.route("/")
 # def index():
 #     return render_template('base.html')

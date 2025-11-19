@@ -1,0 +1,50 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section id="post-nota-container">
+    <div class="title border-bottom">
+        <h2>Criar Nota</h2>
+    </div>
+
+    <form class="form" action="{{url_for('post_nota')}}" method="post">
+
+        <div class="form-group">
+            <label for="titulo">Titulo</label>
+            <input type="text" name="titulo" id="titulo" {% if tit %}value="{{tit}}"{% endif %}>
+        </div>
+        <!-- demanda -->
+        <div class="form-group">
+            <label for="demanda">Demanda</label>
+            {% if demandas %}
+            <select class="select-demanda" name="demanda" id="demanda">
+                {% for demanda in demandas%}
+                <option value="{{demanda.id}}" {% if dem == demanda.id %}selected{% endif %}>{{demanda.id_demanda}} / {{demanda.titulo}}</option>
+                {% endfor %}
+            </select>
+            {% else %}
+            <p class="required" title="Necessário criar!">Não há demandas</p>
+            {% endif %}
+        </div>
+
+
+        <!-- prioridade -->
+        <div class="form-group">
+            <label for="prioridade">Prioridade</label>
+            {% if prioridades %}
+            <select name="prioridade" id="prioridade">
+                {% for prioridade in prioridades%}
+                <option value="{{prioridade.id}}" {% if prio == prioridade.id %}selected{% endif %}>{{prioridade.nome}}</option>
+                {% endfor %}
+            </select>
+            {% else %}
+            <p class="required" title="Necessário criar!">Não há prioridades</p>
+            {% endif %}
+        </div>
+
+        <div class="form-group border-top" style="width: 100%;">
+            <input type="submit" class="btn btn-success" value="Cadastrar">
+
+            <button class="btn btn-warning" onclick="clearForms()">Limpar</button>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}

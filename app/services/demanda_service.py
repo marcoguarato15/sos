@@ -14,7 +14,7 @@ def add_new_demandas_from_sos():
     titulos = titulo_projeto_service.get_titulo_projeto()
     tipos = tipo_service.get_tipo()
     status = status_service.get_status()
-    prioridades = prioridade_service.get_prioridade()
+    prioridades = prioridade_service.get_prioridades()
     categorias = categoria_service.get_categoria()
     custom_fields = custom_field_service.get_custom_field()
     usuarios = usuario_service.get_usuarios()
@@ -136,7 +136,7 @@ def put_demandas_from_sos():
     titulos = titulo_projeto_service.get_titulo_projeto()
     tipos = tipo_service.get_tipo()
     status = status_service.get_status()
-    prioridades = prioridade_service.get_prioridade()
+    prioridades = prioridade_service.get_prioridades()
     categorias = categoria_service.get_categoria()
     usuarios = usuario_service.get_usuarios()
     custom_fields = custom_field_service.get_custom_field()
@@ -250,4 +250,3 @@ def desativar_demandas_finalizadas():
             demanda = get_demanda_by_id_demanda(issue["id"])
             demanda.ativo = False
             db.session.commit()
-

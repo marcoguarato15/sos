@@ -107,7 +107,20 @@ section#list-usuario {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
 }
 
+section#list-nota-container{
+    margin-top: 15px;
+    grid-column: 2;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
+
 section#post-usuario-container {
+    grid-column: 2;
+    justify-content: center;
+    margin-top: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+}
+
+section#post-nota-container {
     grid-column: 2;
     justify-content: center;
     margin-top: 15px;
@@ -199,6 +212,10 @@ select {
     min-width: 188px;
 }
 
+.select-demanda {
+    width: 300px;
+}
+
 .form-group {
     display: flex;
     align-items: center;
@@ -225,6 +242,7 @@ label {
     border-radius: 5px;
 }
 table {
+    margin: 0 auto;
     border-radius: 5px;
     border-collapse: collapse;
 }
