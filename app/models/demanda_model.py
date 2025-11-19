@@ -13,6 +13,7 @@ class Demanda(db.Model):
     data_atualizacao = db.Column(db.DateTime, nullable=True)
     porcentagem_feita = db.Column(db.Integer, nullable=False)
     data_conclusao = db.Column(db.DateTime, nullable=True)
+    ativo = db.Column(db.Boolean, nullable=False)
 
     author_id = db.Column(db.ForeignKey("usuario.id"))
     author = db.relationship("Usuario", backref=db.backref("demanda_criada"), foreign_keys=[author_id])

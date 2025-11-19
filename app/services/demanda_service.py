@@ -87,7 +87,9 @@ def add_new_demandas_from_sos():
                 data_atualizacao = replace_datetime_utc(issue["updated_on"])
             if "closed_on" in issue:
                 data_conclusao = replace_datetime_utc(issue["closed_on"])
-            demanda = Demanda(id_demanda=id_demanda, titulo=titulo,categoria_id=categoria_id, status_id=status_id, descricao=descricao, atribuido_para=atribuido_para, data_inicio=data_inicio, data_criacao=data_criacao, data_estimada=data_estimada,prioridade_id=prioridade_id, data_atualizacao=data_atualizacao, titulo_projeto_id=titulo_projeto_id, porcentagem_feita=porcentagem_feita, author_id=author_id, tipo_id=tipo_id,data_conclusao=data_conclusao)
+
+            ativo = True
+            demanda = Demanda(id_demanda=id_demanda, titulo=titulo,categoria_id=categoria_id, ativo=ativo, status_id=status_id, descricao=descricao, atribuido_para=atribuido_para, data_inicio=data_inicio, data_criacao=data_criacao, data_estimada=data_estimada,prioridade_id=prioridade_id, data_atualizacao=data_atualizacao, titulo_projeto_id=titulo_projeto_id, porcentagem_feita=porcentagem_feita, author_id=author_id, tipo_id=tipo_id,data_conclusao=data_conclusao)
 
             db.session.add(demanda)
             db.session.commit()
@@ -186,6 +188,7 @@ def put_demandas_from_sos():
                 demanda.data_atualizacao = replace_datetime_utc(issue["updated_on"])
             if "closed_on" in issue:
                 demanda.data_conclusao = replace_datetime_utc(issue["closed_on"])
+                demanda.ativo = False
             
             db.session.commit()
             
@@ -229,3 +232,22 @@ def replace_datetime_utc(data):
     data_naive = data_naive.replace("Z", "")
 
     return data_naive
+
+def desativar_demandas_finalizadas():
+    api_key = app.config["DEMANDAS_API_KEY"]
+    ## URL para todas solicitações
+    url = f"https://demandas.uftm.edu.br/projects/projetos-de-redes-digitais/issues.json?key={api_key}&include=custom_fields&limit=100"
+
+    res = requests.get(url).json()
+    issues = res["issues"]
+
+    demandas = get_demandas()
+    id_demandas = [dem.id_demanda for dem in demandas]
+
+    for issue in issues:
+        demanda = None
+        if issue["id"] not in id_demandas:
+            demanda = get_demanda_by_id_demanda(issue["id"])
+            demanda.ativo = False
+            db.session.commit()
+

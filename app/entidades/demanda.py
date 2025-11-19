@@ -1,7 +1,7 @@
 class Demanda():
     # situacao_id = tracker(situação)
     # categoria_id = category_id
-    def __init__(self, id_demanda, titulo_projeto_id, titulo,  tipo_id, status_id, prioridade_id, author_id, categoria_id, data_criacao, porcentagem_feita, descricao=None, atribuido_para_id=None, data_inicio=None, data_atualizacao=None, data_finalizacao=None):
+    def __init__(self, id_demanda, titulo_projeto_id, titulo,  tipo_id, status_id, prioridade_id, author_id, categoria_id, data_criacao, porcentagem_feita, ativo, descricao=None, atribuido_para_id=None, data_inicio=None, data_atualizacao=None, data_finalizacao=None):
         # campos definidos
         self.__id_demanda = id_demanda
         self.__titulo = titulo
@@ -11,6 +11,7 @@ class Demanda():
         self.__data_atualizacao = data_atualizacao
         self.__data_finalizacao = data_finalizacao
         self.__porcentagem_feita = porcentagem_feita
+        self.__ativo = ativo
         # relacionamento com usuario
         self.__author_id = author_id
         self.__atribuido_para_id = atribuido_para_id
@@ -132,6 +133,14 @@ class Demanda():
     @data_finalizacao.setter
     def data_finalizacao(self, data_finalizacao):
         self.__data_finalizacao = data_finalizacao
+
+    @property
+    def ativo(self):
+        return self.__ativo
+    
+    @ativo.setter
+    def ativo(self, ativo):
+        self.__ativo = ativo
 
     @property
     def porcentagem_feita(self):
