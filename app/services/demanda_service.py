@@ -18,7 +18,7 @@ def add_new_demandas_from_sos():
     categorias = categoria_service.get_categoria()
     custom_fields = custom_field_service.get_custom_field()
     usuarios = usuario_service.get_usuarios()
-    demandas_atuais = get_demandas()
+    demandas_atuais = get_all_demandas()
     id_demandas_atuais = [i.id_demanda for i in demandas_atuais]
     for issue in issues:
 
@@ -120,7 +120,7 @@ def put_demandas_from_sos():
     res = requests.get(url).json()
     issues = res["issues"]
 
-    demandas = get_demandas()
+    demandas = get_all_demandas()
     
     id_demandas_bd = [{"id":d.id_demanda, "updated_on":str(d.data_atualizacao)} for d in demandas]
 
@@ -156,6 +156,10 @@ def put_demandas_from_sos():
                 for s in status:
                     if s.id_status == issue["status"]["id"]:
                         demanda.status_id = s.id
+                    if issue["status"]["id"] == 7:
+                        demanda.ativo = True
+                    if issue["status"]["id"] == 5 or issue["status"]["id"] == 11 or issue["status"]["id"] == 6:
+                        demanda.ativo = False
             if "priority" in issue:
                 for p in prioridades:
                     if p.id_prioridade == issue["priority"]["id"]:
@@ -188,7 +192,6 @@ def put_demandas_from_sos():
                 demanda.data_atualizacao = replace_datetime_utc(issue["updated_on"])
             if "closed_on" in issue:
                 demanda.data_conclusao = replace_datetime_utc(issue["closed_on"])
-                demanda.ativo = False
             
             db.session.commit()
             
@@ -219,7 +222,11 @@ def put_demandas_from_sos():
 
 
 
-def get_demandas():
+def get_demandas_ativas():
+    demandas = Demanda.query.filter_by(ativo=True).all()
+    return demandas
+
+def get_all_demandas():
     demandas = Demanda.query.all()
     return demandas
 
@@ -241,12 +248,16 @@ def desativar_demandas_finalizadas():
     res = requests.get(url).json()
     issues = res["issues"]
 
-    demandas = get_demandas()
+    demandas = get_all_demandas()
     id_demandas = [dem.id_demanda for dem in demandas]
 
     for issue in issues:
         demanda = None
         if issue["id"] not in id_demandas:
+            demanda = get_demanda_by_id_demanda(issue["id"])
+            demanda.ativo = False
+            db.session.commit()
+        if "closed_on" in issue and issue["closed_on"] != "" and issue["status"]["id"] != 7:
             demanda = get_demanda_by_id_demanda(issue["id"])
             demanda.ativo = False
             db.session.commit()

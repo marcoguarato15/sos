@@ -14,7 +14,7 @@ def notas():
 @app.route("/post/nota", methods=["GET","POST"])
 def post_nota():
     prioridades = prioridade_service.get_prioridades()
-    demandas = demanda_service.get_demandas()
+    demandas = demanda_service.get_demandas_ativas()
     titulo = None
     demanda = None
     prioridade = None

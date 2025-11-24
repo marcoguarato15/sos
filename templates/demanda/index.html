@@ -7,6 +7,7 @@
     <div style="display: flex;" class="border-bottom">
         <a class="btn btn-success fit-content margin-5" href="{{url_for('get_demandas')}}">Buscar novas demandas</a>
         <a class="btn btn-warning fit-content margin-5" href="{{url_for('put_demandas')}}">Verificar atualizações</a>
+        <a class="btn btn-danger fit-content margin-5" href="{{url_for('del_demandas')}}">Excluir demanda finalizadas</a>
     </div>
     <section class="table margin-5">
         <table>
@@ -18,6 +19,7 @@
                     <th scope="col">Autor</th>
                     <th scope="col">Status</th>
                     <th scope="col">Prioridade</th>
+                    <th scope="col">Notas</th>
                     <!-- <th scope="col">Ações</th> -->
                 </tr>
             </thead>
@@ -31,6 +33,7 @@
                     <td>{{demanda.author.nome}}</td>
                     <td>{{demanda.status.nome}}</td>
                     <td>{{demanda.prioridade.nome}}</td>
+                    <td>{% for nota in demanda.nota %} <a class="btn btn-success" href="#">{{nota.titulo}}</a> {% endfor %}</td>
                     <!-- <td>
                         <a class="btn btn-warning" href="#">Editar</a>
                         <a class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir a demanda {{demanda.id_demanda}}')" href="#">Deletar</a>
