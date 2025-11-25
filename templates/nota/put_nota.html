@@ -2,23 +2,23 @@
 {% block conteudo %}
 <section class="content-container">
     <div class="title border-bottom">
-        <h2>Criar Nota</h2>
+        <h2>Alterar Nota</h2>
     </div>
 
-    <form class="form" action="{{url_for('post_nota')}}" method="post">
+    <form class="form" action="{{url_for('put_nota', id=nota.id)}}" method="POST">
 
         <div class="form-group">
             <label for="titulo">Titulo</label>
-            <input type="text" name="titulo" id="titulo" {% if tit %}value="{{tit}}"{% endif %} required>
+            <input type="text" name="titulo" id="titulo" value="{{nota.titulo}}" required>
         </div>
 
         <!-- prioridade -->
         <div class="form-group">
-            <label for="prioridade">Prioridade</label>
+            <label for="prioridade_id">Prioridade</label>
             {% if prioridades %}
-            <select name="prioridade" id="prioridade" required>
+            <select name="prioridade_id" id="prioridade_id" required>
                 {% for prioridade in prioridades%}
-                <option value="{{prioridade.id}}">{{prioridade.nome}}</option>
+                <option value="{{prioridade.id}}" {% if nota.prioridade_id == prioridade.id %}selected{% endif %}>{{prioridade.nome}}</option>
                 {% endfor %}
             </select>
             {% else %}
@@ -28,11 +28,11 @@
 
         <!-- demanda -->
         <div class="form-group">
-            <label for="demanda">Demanda</label>
+            <label for="demanda_id">Demanda</label>
             {% if demandas %}
-            <select class="select-demanda" name="demanda" id="demanda" required>
-                {% for demanda in demandas%}
-                <option value="{{demanda.id}}">{{demanda.id_demanda}} / {{demanda.titulo}}</option>
+            <select class="select-demanda" name="demanda_id" id="demanda_id" required>
+                {% for demanda in demandas %}
+                <option value="{{demanda.id}}" {% if nota.demanda_id == demanda.id %}selected{% endif %}>{{demanda.id_demanda}} / {{demanda.titulo}}</option>
                 {% endfor %}
             </select>
             {% else %}
@@ -40,8 +40,8 @@
             {% endif %}
         </div>
 
-        <div class="form-group border-top" style="width: 100%;">
-            <input type="submit" class="btn btn-success" value="Cadastrar">
+        <div class="form-group border-top">
+            <input type="submit" class="btn btn-success" value="Alterar">
 
             <button class="btn btn-warning" onclick="clearForms()">Limpar</button>
         </div>

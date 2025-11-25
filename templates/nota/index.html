@@ -34,8 +34,8 @@
                     <td>{% if nota.demanda.categoria %}{{nota.demanda.categoria.nome}}{% endif %}</td>
                     <td>
                         <a href="#" class="btn btn-success">Criar Tarefa</a>
-                        <a href="#" class="btn btn-warning">Editar</a>
-                        <a href="#" class="btn btn-danger">Excluir</a>
+                        <a href="{{url_for('put_nota', id=nota.id)}}" class="btn btn-warning">Editar</a>
+                        <a href="{{url_for('del_nota', id=nota.id)}}" onclick="return confirm('Deseja excluir a nota {{nota.titulo}}?')" class="btn btn-danger">Excluir</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -8,17 +8,17 @@
     <form class="form" action="{{url_for('post_horario_trabalho')}}" method="post">
         <div class="form-group">
             <label for="horario_inicio">Horario de Inicio</label>
-            <input type="time" name="horario_inicio" id="horario_inicio" value="08:00:00">
+            <input type="time" name="horario_inicio" id="horario_inicio" value="08:00:00" required>
         </div>
 
         <class class="form-group">
             <label for="horario_fim">Horario de Término</label>
-            <input type="time" name="horario_fim" id="horario_fim" value="17:00:00">
+            <input type="time" name="horario_fim" id="horario_fim" value="17:00:00" required>
         </class>
 
-        <class class="form-group">
+        <class class="form-group" >
             <label for="tipo_turno">Tipo do Turno</label>
-            <select name="tipo_turno" id="tipo_turno">
+            <select name="tipo_turno" id="tipo_turno" required>
                 <option value="Diurno" selected>Diurno</option>
                 <option value="Noturno">Noturno</option>
             </select>
@@ -26,6 +26,8 @@
 
         <div class="form-group border-top" style="width: 100%;">
             <input class="btn btn-success" type="submit" value="Adicionar">
+            
+            <button class="btn btn-warning" onclick="clearForms()">Limpar</button>
         </div>
     </form>
 
