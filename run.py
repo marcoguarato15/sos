@@ -7,6 +7,7 @@ from routes.login import login
 from routes.usuario import usuario
 from routes.demandas import demanda
 from routes.nota import nota
+from routes.horario_trabalho import horario_trabalho
 
 # @app.route("/")
 # def index():

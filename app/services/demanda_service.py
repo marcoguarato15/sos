@@ -20,6 +20,7 @@ def add_new_demandas_from_sos():
     usuarios = usuario_service.get_usuarios()
     demandas_atuais = get_all_demandas()
     id_demandas_atuais = [i.id_demanda for i in demandas_atuais]
+    demandas_desativadas = []
     for issue in issues:
 
         id_demanda = None
@@ -109,8 +110,18 @@ def add_new_demandas_from_sos():
                             demanda_custom_value = DemandaCustomValue(valor=cf["value"], demanda_id=id_demanda_db, custom_field_id=cf_obj.id)
                             demanda_custom_value_service.add_demanda_custom_value(demanda_custom_value)            
         else:
+                if issue["status"]["id"] == 7:
+                    demandas_desativadas.append(issue["id"])
                 print(f"{issue["id"]} já incluída")
+    
+    if len(demandas_desativadas) != 0:
+        ativar_demandas(demandas_desativadas)
 
+def ativar_demandas(demanda_id_list):
+    for d in demanda_id_list:
+        demanda = get_demanda_by_id_demanda(d)
+        demanda.ativo = True
+        db.session.commit()
 
 def put_demandas_from_sos():
     api_key = app.config["DEMANDAS_API_KEY"]
@@ -248,16 +259,11 @@ def desativar_demandas_finalizadas():
     res = requests.get(url).json()
     issues = res["issues"]
 
-    demandas = get_all_demandas()
-    id_demandas = [dem.id_demanda for dem in demandas]
+    demandas_bd = get_demandas_ativas()
+    
+    issues_id = [issue["id"] for issue in issues]
 
-    for issue in issues:
-        demanda = None
-        if issue["id"] not in id_demandas:
-            demanda = get_demanda_by_id_demanda(issue["id"])
-            demanda.ativo = False
-            db.session.commit()
-        if "closed_on" in issue and issue["closed_on"] != "" and issue["status"]["id"] != 7:
-            demanda = get_demanda_by_id_demanda(issue["id"])
+    for demanda in demandas_bd:
+        if demanda.id_demanda not in issues_id:
             demanda.ativo = False
             db.session.commit()

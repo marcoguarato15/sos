@@ -1,6 +1,6 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
-<section id="list-nota-container" class="border-radius">
+<section class="content-container">
     <div class="border-bottom">
         <h2 class="title">Notas</h2>
     </div>
@@ -40,7 +40,7 @@
                 </tr>
                 {% endfor %}
                 {% else %}
-                <td colspan="6">Não há notas criadas</td>
+                <td colspan="8">Não há notas criadas</td>
                 {% endif %}
             </tbody>
         </table>

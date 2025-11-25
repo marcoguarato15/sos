@@ -7,7 +7,6 @@ from app.services import demanda_service
 @jwt_refresh
 def demandas():
     demandas = demanda_service.get_demandas_ativas()
-    
     return render_template('demanda/index.html', demandas=demandas)
 
 @app.route('/get/demandas')
@@ -23,7 +22,11 @@ def get_demandas():
 @app.route("/put_demandas")
 @jwt_refresh
 def put_demandas():
-    demanda_service.put_demandas_from_sos()
+    try:
+        demanda_service.put_demandas_from_sos()
+        flash("Sucesso ao atualizar demandas","success")
+    except Exception:
+        flash("Falha ao atualizar demandas, SOS fora do ar","error")
     return redirect(url_for('demandas'))
 
 @app.route("/del/demandas")

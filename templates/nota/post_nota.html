@@ -1,6 +1,6 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
-<section id="post-nota-container">
+<section class="content-container">
     <div class="title border-bottom">
         <h2>Criar Nota</h2>
     </div>
@@ -11,20 +11,6 @@
             <label for="titulo">Titulo</label>
             <input type="text" name="titulo" id="titulo" {% if tit %}value="{{tit}}"{% endif %}>
         </div>
-        <!-- demanda -->
-        <div class="form-group">
-            <label for="demanda">Demanda</label>
-            {% if demandas %}
-            <select class="select-demanda" name="demanda" id="demanda">
-                {% for demanda in demandas%}
-                <option value="{{demanda.id}}" {% if dem == demanda.id %}selected{% endif %}>{{demanda.id_demanda}} / {{demanda.titulo}}</option>
-                {% endfor %}
-            </select>
-            {% else %}
-            <p class="required" title="Necessário criar!">Não há demandas</p>
-            {% endif %}
-        </div>
-
 
         <!-- prioridade -->
         <div class="form-group">
@@ -37,6 +23,20 @@
             </select>
             {% else %}
             <p class="required" title="Necessário criar!">Não há prioridades</p>
+            {% endif %}
+        </div>
+
+        <!-- demanda -->
+        <div class="form-group">
+            <label for="demanda">Demanda</label>
+            {% if demandas %}
+            <select class="select-demanda" name="demanda" id="demanda">
+                {% for demanda in demandas%}
+                <option value="{{demanda.id}}" {% if dem == demanda.id %}selected{% endif %}>{{demanda.id_demanda}} / {{demanda.titulo}}</option>
+                {% endfor %}
+            </select>
+            {% else %}
+            <p class="required" title="Necessário criar!">Não há demandas</p>
             {% endif %}
         </div>
 

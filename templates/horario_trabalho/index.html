@@ -1,0 +1,40 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title border-bottom">
+        <h2>Horarios de trabalho</h2>
+    </div>
+    <div style="display: flex;" class="border-bottom">
+        <a class="btn btn-success fit-content margin-5" href="{{url_for('post_horario_trabalho')}}">Adicionar horario Trabalho</a>
+    </div>
+    <div class="table margin-5">
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Inicio</th>
+                <th>Fim</th>
+                <th>Tipo turno</th>
+                <th>Ações</th>
+            </thead>
+            <tbody>
+                {% if horarios_trabalho %}
+                {% for ht in horarios_trabalho %}
+                <td>{{ht.id}}</td>
+                <td>{{ht.horario_inicio}}</td>
+                <td>{{ht.horario_fim}}</td>
+                <td>{{ht.tipo_turno}}</td>
+                <td>
+                    <a class="btn btn-warning" href="#">Editar</a>
+                    <a class="btn btn-danger" href="#">Excluir</a>
+                </td>
+                {% endfor %}
+                {% else %}
+                <td colspan="5">
+                    <p class="required">Não há horarios de trabalho</p>
+                </td>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock conteudo %}

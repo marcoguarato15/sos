@@ -95,36 +95,13 @@ section#conteudo {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
 }
 /* ---- Containers ---- */
-section#list-demanda-container {
-    margin-top: 15px;
-    grid-column: 2;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
-}
 
-section#list-usuario {
-    margin-top: 15px;
-    grid-column: 2;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
-}
-
-section#list-nota-container{
-    margin-top: 15px;
-    grid-column: 2;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
-}
-
-section#post-usuario-container {
+.content-container {
     grid-column: 2;
     justify-content: center;
     margin-top: 15px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
-}
-
-section#post-nota-container {
-    grid-column: 2;
-    justify-content: center;
-    margin-top: 15px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.267);
+    border-radius: 5px;
 }
 
 /* ---- MENU ---- */
@@ -197,13 +174,13 @@ h2 {
 }
 /* -------------- */
 /* ---- forms ---- */
-input[type="text"], input[type="password"], input[type="email"], select {
+input[type="text"], input[type="password"], input[type="email"], input[type="time"],select {
     border-radius: 5px;
     padding: 3px;
     border: 1px inset;
 }
 
-input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:focus, select {
+input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:focus, input[type="time"]:focus, select {
     outline-color: var(--destaque);
     outline: 0.5px invert;
 }
@@ -222,6 +199,7 @@ select {
     justify-content: center;
     margin: 10px auto;
     gap: 10px;
+    width: 100%;
 }
 
 label {
