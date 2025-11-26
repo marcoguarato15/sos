@@ -19,20 +19,22 @@
             <tbody>
                 {% if horarios_trabalho %}
                 {% for ht in horarios_trabalho %}
-                <td>{{ht.id}}</td>
-                <td>{{ht.horario_inicio}}</td>
-                <td>{{ht.horario_fim}}</td>
-                <td>{{ht.tipo_turno}}</td>
-                <td>
-                    <a class="btn btn-warning" href="#">Editar</a>
-                    <a class="btn btn-danger" href="#">Excluir</a>
-                </td>
-                {% endfor %}
-                {% else %}
-                <td colspan="5">
-                    <p class="required">Não há horarios de trabalho</p>
-                </td>
-                {% endif %}
+                <tr>
+                    <td>{{ht.id}}</td>
+                    <td>{{ht.horario_inicio}}</td>
+                    <td>{{ht.horario_fim}}</td>
+                    <td>{{ht.tipo_turno}}</td>
+                    <td>
+                        <a class="btn btn-warning" href="{{url_for('put_horario_trabalho',id=ht.id)}}">Editar</a>
+                        <a class="btn btn-danger" onclick="return confirm('Deseja excluir o Horario de Trabalho {{ht.horario_inicio}}/{{ht.horario_fim}}')" href="{{url_for('del_horario_trabalho',id=ht.id)}}">Excluir</a>
+                    </td>
+                </tr>
+                    {% endfor %}
+                    {% else %}
+                    <td colspan="5">
+                        <p class="required">Não há horarios de trabalho</p>
+                    </td>
+                    {% endif %}
             </tbody>
         </table>
     </div>

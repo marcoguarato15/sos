@@ -1,13 +1,14 @@
 from datetime import datetime
 
 class Horario_trabalho():
-    def __init__(self, horario_inicio, horario_fim, tipo_turno, criador_id=None, ultima_atualizacao=None):
+    def __init__(self, horario_inicio, horario_fim, tipo_turno, ativo, criador_id=None, data_atualizacao=None):
         self.__horario_inicio = horario_inicio
         self.__horario_fim = horario_fim
         self.__tipo_turno = tipo_turno
         self.__criador_id = criador_id
         self.__data_criacao = datetime.now()
-        self.__ultima_atualizacao = ultima_atualizacao
+        self.__data_atualizacao = data_atualizacao
+        self.__ativo = ativo
 
     @property
     def horario_inicio(self):
@@ -42,9 +43,17 @@ class Horario_trabalho():
         return self.__data_criacao
     
     @property
-    def ultima_atualizacao(self):
-        return self.__ultima_atualizacao
+    def data_atualizacao(self):
+        return self.__data_atualizacao
     
-    @ultima_atualizacao.setter
-    def ultima_atualizacao(self, ultima_atualizacao):
-        self.__ultima_atualizacao = ultima_atualizacao
+    @data_atualizacao.setter
+    def data_atualizacao(self, data_atualizacao):
+        self.__data_atualizacao = data_atualizacao
+
+    @property
+    def ativo(self):
+        return self.__ativo
+    
+    @ativo.setter
+    def ativo(self, ativo):
+        self.__ativo = ativo

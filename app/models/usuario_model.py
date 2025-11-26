@@ -24,7 +24,7 @@ class Usuario(db.Model):
     deletado_em = db.Column(db.DateTime, nullable=True)
 
     horario_trabalho_id = db.Column(db.Integer, db.ForeignKey("horario_trabalho.id"))
-    horario_trabalho = db.relationship("HorarioTrabalho", backref=db.backref("horario_atribuido", lazy="joined"), foreign_keys=[horario_trabalho_id])
+    horario_trabalho = db.relationship("HorarioTrabalho", backref=db.backref("usuario_atribuido", lazy="joined"), foreign_keys=[horario_trabalho_id])
 
     def encriptar_senha(self):
         self.senha = pbkdf2_sha256.using(rounds=600000, salt_size=32).hash(self.senha)
