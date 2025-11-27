@@ -25,9 +25,6 @@ def put_horario_trabalho(id, horario_inicio, horario_fim, tipo_turno):
 
 def del_horario_trabalho(id):
     horario_trabalho = get_horario_trabalho_by_id(id)
-    if horario_trabalho.usuario_atribuido == None:
-        horario_trabalho.ativo = False
-        horario_trabalho.data_atualizacao = datetime.now()
-        db.session.commit()
-    else:
-        raise Exception("Falha de integridade")
+    horario_trabalho.ativo = False
+    horario_trabalho.data_atualizacao = datetime.now()
+    db.session.commit()
