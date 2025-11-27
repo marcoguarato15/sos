@@ -1,0 +1,57 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title border-bottom">
+        <h2>Setores</h2>
+    </div>
+        <div class="border-bottom">
+        <a class="btn btn-success fit-content margin-5" href="#">Criar Setor</a>
+    </div>
+    <div class="table margin-5">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Gestor</th>
+                    <th scope="col">Data de Criação</th>
+                    <th scope="col">Data de atualização</th>
+                    <th scope="col">Membros</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if setores %}
+                {% for setor in setores %}
+                <tr>
+                    <td>{{setor.id}}</td>
+                    <td>{{setor.nome}}</td>
+                    <td>{{setor.gestor.nome}}</td>
+                    <td>{{setor.data_criacao}}</td>
+                    <td>{{setor.data_atualizacao}}</td>
+                    <td style="width: 200px;">
+                        <div style="display: flex; flex-wrap: wrap; gap: 0px 2px;">
+
+                            {% for membro in setor.membros %}
+                            <span style="max-width: fit-content;" class="btn btn-success">
+                                {{membro.nome}}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="#">Editar</a>
+                        <a class="btn btn-danger" href="#">Excluir</a>
+                </tr>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td class="required" rowspan="7">Não há setores</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock conteudo %}

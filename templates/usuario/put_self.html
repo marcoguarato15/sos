@@ -1,0 +1,28 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="border-bottom">
+        <h2>Alterar {{usuario.nome}}</h2>
+    </div>
+    <form class="form" action="{{url_for('put_self', id=usuario.id)}}" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome<span class="required">*</span></label>
+            <input type="text" value="{{usuario.nome}}" name="nome" id="nome" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email<span class="required">*</span></label>
+            <input type="email" value="{{usuario.email}}" name="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="contato">Contato</label>
+            <input type="text" value="{{usuario.contato}}" name="contato" id="contato">
+        </div>
+
+        <div class="form-group border-top" style="width: 100%;">
+            <input type="submit" class="btn btn-success" value="Alterar">
+            <a href="#" class="btn btn-warning" onclick="clearForms()">Reverter</a>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}

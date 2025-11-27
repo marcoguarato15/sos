@@ -1,0 +1,31 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title border-bottom">
+        <h2>Adicionar setores</h2>
+    </div>
+    <!-- <form class="form" action="{{url_for('post_setor')}}" method="post"> -->
+    <form class="form" action="#" method="post">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" value="{{setor.nome}}">
+        </div>
+        <div class="form-group">
+            <label for="gestor_id">Gestor</label>
+            <select name="gestor_id" id="gestor_id">
+                {% if usuarios %}
+                {% for usuario in usuarios %}
+                <option value="{{usuario.id}}" {{if usuario.id == setor.gestor_id}}selected{{endif}}>{{usuario.nome}}</option>
+                {% endfor %}
+                {% else %}
+                <p class="required">Não há usuarios</p>
+                {% endif %}
+            </select>
+        </div>
+        <div class="form-group border-top">
+            <input type="submit" class="btn btn-success" name="adicionar" id="adicionar" value="Adicionar">
+            <a href="#" class="btn btn-warning" onclick="clearForms()">Limpar</a>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}
