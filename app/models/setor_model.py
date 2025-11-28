@@ -7,6 +7,7 @@ class Setor(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     gestor_id = db.Column(db.Integer, db.ForeignKey("usuario.id"))
     gestor = db.relationship("Usuario", foreign_keys=[gestor_id], backref=db.backref("setor_gestorado"))
+    ativo = db.Column(db.Boolean, nullable=False)
     
     membros = db.relationship("Usuario", back_populates="setor", foreign_keys="[Usuario.setor_id]")
     data_criacao = db.Column(db.DateTime, nullable=False)

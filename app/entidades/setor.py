@@ -1,10 +1,11 @@
 from datetime import datetime
 
 class Setor():
-    def __init__(self, nome, gestor_id, membros):
+    def __init__(self, nome, gestor_id, ativo,membros=None):
         self.__nome = nome
         self.__gestor_id = gestor_id
         self.__membros = membros
+        self.__ativo = ativo
         self.__data_criacao = datetime.now()
 
     @property
@@ -35,3 +36,10 @@ class Setor():
     def data_criacao(self):
         return self.__data_criacao
     
+    @property
+    def ativo(self):
+        return self.__ativo
+    
+    @ativo.setter
+    def ativo(self, ativo):
+        self.__ativo = ativo
