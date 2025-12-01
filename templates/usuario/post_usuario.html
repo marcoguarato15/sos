@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 {% if horarios_trabalho %}
-                <label for="hprario_trabalho_id">Horário<span class="required">*</span></label>
+                <label for="horario_trabalho_id">Horário<span class="required">*</span></label>
                 <select name="horario_trabalho_id" id="horario_trabalho_id">
                     {% for horario_trabalho in horarios_trabalho %}
                     <option value="{{horario_trabalho.id}}">

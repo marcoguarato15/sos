@@ -54,8 +54,8 @@ def put_usuario(id):
                 cargo = request.form.get('cargo')
                 disponivel =  True if disponivel == "1" else False
                 contato = request.form.get('contato')
-                id_demanda = 0 if request.form.get('id_demanda').strip() == '' else int(request.form.get('id_demanda'))
-                usuario = usuario_service.put_usuario(id_demanda=id_demanda,nome=nome, email=email, cargo=cargo,setor_id=setor_id, papel=papel, disponivel=disponivel, contato=contato, horario_trabalho_id=horario_trabalho_id, id=id)
+                id_usuario = 0 if request.form.get('id_usuario').strip() == '' else int(request.form.get('id_usuario'))
+                usuario = usuario_service.put_usuario(id_usuario=id_usuario,nome=nome, email=email, cargo=cargo,setor_id=setor_id, papel=papel, disponivel=disponivel, contato=contato, horario_trabalho_id=horario_trabalho_id, id=id)
                 flash("Alteração feita com sucesso","success")
 
             else:

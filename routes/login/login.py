@@ -21,12 +21,12 @@ def login():
                 usuario_service.set_ultimo_login(usuario)
                 access_token = create_access_token(
                     identity=str(usuario.id),
-                    expires_delta=timedelta(minutes=1),
+                    expires_delta=timedelta(seconds=10),
                     additional_claims={"alter":alter}
                 )
                 refresh_token = create_refresh_token(
                     identity=str(usuario.id),
-                    expires_delta=timedelta(minutes=15),
+                    additional_claims={"alter":alter}
                 )
                 response = make_response(redirect(url_for("index")))
                 set_access_cookies(response, access_token)

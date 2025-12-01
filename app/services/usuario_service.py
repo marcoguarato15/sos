@@ -26,9 +26,9 @@ def add_usuario(usuario):
     db.session.add(usr)
     db.session.commit()
 
-def put_usuario(id_demanda,nome, email, cargo, setor_id, papel, disponivel, contato, horario_trabalho_id, id):
+def put_usuario(id_usuario,nome, email, cargo, setor_id, papel, disponivel, contato, horario_trabalho_id, id):
     usuario = get_usuario_by_id(id)
-    usuario.id_demanda = id_demanda
+    usuario.id_usuario = id_usuario
     usuario.nome = nome
     usuario.email = email
     usuario.cargo = cargo

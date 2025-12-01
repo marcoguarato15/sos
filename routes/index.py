@@ -10,8 +10,9 @@ def index():
     claims = get_jwt()
     if claims["alter"] == "True":
         return render_template('usuario/set_senha.html')
-    elif claims["papel"] == "admin":
-        return render_template("home/adm.html")
     else:
-        return render_template("home/index.html")
+        if claims["papel"] == "admin":
+            return render_template("home/adm.html")
+        else:
+            return render_template("home/index.html")
         
