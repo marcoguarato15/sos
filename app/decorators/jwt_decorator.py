@@ -18,7 +18,7 @@ def jwt_refresh(func):
                 alter = claims["alter"]
                 new_access_token = create_access_token(
                     identity=identity,
-                    expires_delta=timedelta(seconds=10),
+                    expires_delta=timedelta(minutes=5),
                     additional_claims={"alter":alter}
                 )
                 new_refresh_token = create_refresh_token(
