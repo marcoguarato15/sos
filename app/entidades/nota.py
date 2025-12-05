@@ -1,10 +1,9 @@
 from datetime import datetime
 
 class Nota():
-    def __init__(self, titulo, demanda_id, prioridade_id, ativo):
+    def __init__(self, titulo, demanda_id, ativo):
         self.__titulo = titulo
         self.__demanda_id = demanda_id
-        self.__prioridade_id = prioridade_id
         self.__data_criacao = datetime.now()
         self.__ativo = ativo
 
@@ -23,14 +22,6 @@ class Nota():
     @demanda_id.setter
     def demanda_id(self, demanda_id):
         self.__demanda_id = demanda_id
-
-    @property
-    def prioridade_id(self):
-        return self.__prioridade_id
-    
-    @prioridade_id.setter
-    def prioridade_id(self, prioridade_id):
-        self.__prioridade_id = prioridade_id
 
     @property
     def ativo(self):

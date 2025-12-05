@@ -12,20 +12,6 @@
             <input type="text" name="titulo" id="titulo" value="{{nota.titulo}}" required>
         </div>
 
-        <!-- prioridade -->
-        <div class="form-group">
-            <label for="prioridade_id">Prioridade</label>
-            {% if prioridades %}
-            <select name="prioridade_id" id="prioridade_id" required>
-                {% for prioridade in prioridades%}
-                <option value="{{prioridade.id}}" {% if nota.prioridade_id == prioridade.id %}selected{% endif %}>{{prioridade.nome}}</option>
-                {% endfor %}
-            </select>
-            {% else %}
-            <p class="required" title="Necessário criar!">Não há prioridades</p>
-            {% endif %}
-        </div>
-
         <!-- demanda -->
         <div class="form-group">
             <label for="demanda_id">Demanda</label>

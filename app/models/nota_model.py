@@ -10,6 +10,3 @@ class Nota(db.Model):
 
     demanda_id = db.Column(db.ForeignKey("demanda.id"), nullable=True)
     demanda = db.relationship("Demanda", backref=db.backref("nota"), foreign_keys=[demanda_id])
-
-    prioridade_id = db.Column(db.ForeignKey("prioridade.id"), nullable=False)
-    prioridade = db.relationship("Prioridade", backref=db.backref("nota", lazy="joined"), foreign_keys=[prioridade_id])
