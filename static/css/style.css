@@ -174,15 +174,20 @@ h2 {
 }
 /* -------------- */
 /* ---- forms ---- */
-input[type="text"], input[type="password"], input[type="email"], input[type="time"],select {
+input[type="text"], input[type="password"], input[type="email"], input[type="time"],select, textarea {
     border-radius: 5px;
     padding: 3px;
     border: 1px inset;
 }
 
-input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:focus, input[type="time"]:focus, select {
+input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:focus, input[type="time"]:focus, select, textarea:focus {
     outline-color: var(--destaque);
     outline: 0.5px invert;
+}
+
+textarea {
+    min-width: 190px;
+    min-height: 100px;
 }
 
 select {
