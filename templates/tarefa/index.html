@@ -1,0 +1,59 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title border-bottom">
+        <h2>Tarefas</h2>
+    </div>
+    <div style="display: flex;" class="border-bottom">
+        <a href="{{url_for('post_tarefa')}}" class="btn btn-success margin-5">Criar tarefa</a>
+    </div>
+    <section class="table margin-5">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Prioridade</th>
+                    <th scope="col">Tempo Gasto Total</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Data de criação</th>
+                    <th scope="col">Atividades</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if atividades %}
+                {% for atividade in atividades %}
+                <tr>
+                    <td>tarefa.id</td>
+                    <td>tarefa.titulo</td>
+                    <td>tarefa.descricao</td>
+                    <td>tarefa.prioridade_tarefa.nome</td>
+                    <td>tarefa.status_tarefa.nome</td>
+                    <td>tarefa.tempo_gasto_total</td>
+                    <td>tarefa.data_criacao</td>
+                    {%if tarefa.atividades != None %}
+                    {% for atividade in tarefa.atividades %}
+                    <a class="btn btn-success" href="#">{{atividade.nome}}</a>
+                    {% endfor %}
+                    {%else%}
+                    <td>Sem atividades</td>
+                    {% endif %}
+                    <td>
+                        <a class="btn btn-success" href="#">Criar atividade</a>
+                        <a class="btn btn-warning" href="#">Editar tarefa</a>
+                        <a class="btn btn-danger" href="#">Excluir tarefa</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="9">Não há Tarefas criadas</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </section>
+</section>
+{% endblock conteudo %}

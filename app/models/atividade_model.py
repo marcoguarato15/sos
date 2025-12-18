@@ -14,7 +14,7 @@ class Atividade(db.Model):
     data_conclusao = db.Column(db.DateTime, nullable=True)
 
     tarefa_id = db.Column(db.ForeignKey("tarefa.id"))
-    tarefa = db.relationship("Tarefa", backref=db.backref("atividade", lazy="joined"), foreign_keys=[tarefa_id])
+    tarefa = db.relationship("Tarefa", backref=db.backref("atividades", lazy="joined"), foreign_keys=[tarefa_id])
     
     categoria_atividade_id = db.Column(db.ForeignKey("categoria_atividade.id"))
     categoria_atividade = db.relationship("CategoriaAtividade", backref=db.backref("atividade"), foreign_keys=[categoria_atividade_id])

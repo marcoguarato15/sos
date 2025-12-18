@@ -9,6 +9,7 @@ from routes.demandas import demanda
 from routes.nota import nota
 from routes.horario_trabalho import horario_trabalho
 from routes.setor import setor
+from routes.tarefa import tarefa
 
 @jwt.additional_claims_loader
 def add_claims_to_access_token(identity):

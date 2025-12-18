@@ -101,3 +101,11 @@ def set_senha():
         else:
             flash("Preencha os campos","error")
     return render_template('usuario/set_senha.html', senha=senha)
+
+@app.route('/my_page')
+@jwt_refresh
+def my_page():
+    id_usuario = get_jwt_identity()
+    usuario = usuario_service.get_usuario_by_id(id_usuario)
+
+    return render_template("usuario/my_page.html", usuario=usuario, papel=usuario.papel)

@@ -6,7 +6,7 @@ class Tarefa(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     titulo = db.Column(db.String(150), nullable=False)
     descricao = db.Column(db.Text, nullable=True)
-
+    ativo = db.Column(db.Boolean, nullable=False)
     prioridade_tarefa_id = db.Column(db.ForeignKey("prioridade_tarefa.id"))
     prioridade_tarefa = db.relationship("PrioridadeTarefa", backref=db.backref("tarefas", lazy="joined"), foreign_keys=[prioridade_tarefa_id])
 

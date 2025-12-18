@@ -1,8 +1,10 @@
 from app import db, app
 from app.models.demanda_model import Demanda
+from app.models.nota_model import Nota
 from app.services import demanda_custom_value_service, titulo_projeto_service, status_service, prioridade_service, tipo_service, categoria_service, custom_field_service, usuario_service
 from app.entidades.demanda_custom_value import DemandaCustomValue
 import requests
+from sqlalchemy.orm import with_loader_criteria
 
 def add_new_demandas_from_sos():
     api_key = app.config["DEMANDAS_API_KEY"]
@@ -232,9 +234,9 @@ def put_demandas_from_sos():
                                     demanda_custom_value_service.put_demanda_custom_value(dcv_bd.id, cf["value"])
 
 
-
+# Busca apenas as notas ativas de cada demanda
 def get_demandas_ativas():
-    demandas = Demanda.query.filter_by(ativo=True).all()
+    demandas = Demanda.query.filter_by(ativo=True).options(with_loader_criteria(Nota, Nota.ativo == True)).all()
     return demandas
 
 def get_all_demandas():

@@ -1,0 +1,68 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="border-bottom">
+        <h2>Adicionar Tarefa</h2>
+    </div>
+    <form class="form" action="{{url_for('post_tarefa')}}" method="POST">
+        <div class="form-group">
+            <label for="nota_id">Nota<span class="required">*</span></label>
+            <select name="nota_id" id="nota_id">
+                {% for nota in notas %}
+                <option value="{{nota.id}}" {%if nota_id == nota.id %}selected{% endif %}>{{nota.titulo}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="split-content-left">
+            <div class="form-group">
+                <label for="titulo">Titulo<span class="required">*</span></label>
+                <input type="text" name="titulo" id="titulo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea name="descricao" id="descricao"></textarea>
+            </div>
+
+        </div>
+
+        <div class="split-content-right">
+            <div class="form-group">
+                {% if status %}
+                <label for="status_id">Setor<span class="required">*</span></label>
+                <select name="status_id" id="status_id" required>
+                    {% for st in status %}
+                    <option value="{{st.id}}">{{st.nome}}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <p class="required">Crie um status!</p>
+                {% endif %}
+
+            </div>
+
+            <div class="form-group">
+                {% if prioridades %}
+                <label for="prioridade_id">Prioridade<span class="required">*</span></label>
+                <select name="prioridade_id" id="prioridade_id">
+                    {% for prioridade in prioridades %}
+                    <option value="{{prioridade.id}}">
+                        {{prioridade.num_prioridade}}-{{prioridade.nome}}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <p class="required">Crie uma prioridade!</p>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="form-group border-top" style="width: 100%;">
+            <input type="submit" class="btn btn-success" value="Criar">
+
+            <a class="btn btn-warning" href="#" onclick="clearForms()">Limpar</a>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}

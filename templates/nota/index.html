@@ -27,11 +27,11 @@
                     <td>{{nota.id}}</td>
                     <td>{{nota.titulo}}</td>
                     <td>{{nota.demanda.titulo_projeto.nome}}</td>
-                    <td>{{nota.demanda.id_demanda}}</td>
+                    <td>{{nota.demanda.id_demanda}}{% if nota.demanda.ativo == False %}/<span class="required" title="Demanda foi finalizada ou suspensa">Desativada</span>{% endif %}</td>
                     <td>{{nota.demanda.titulo}}</td>
                     <td>{% if nota.demanda.categoria %}{{nota.demanda.categoria.nome}}{% endif %}</td>
                     <td>
-                        <a href="#" class="btn btn-success">Criar Tarefa</a>
+                        <a href="{{url_for('post_tarefa', nota_id=nota.id)}}" class="btn btn-success">Criar Tarefa</a>
                         <a href="{{url_for('put_nota', id=nota.id)}}" class="btn btn-warning">Editar</a>
                         <a href="{{url_for('del_nota', id=nota.id)}}" onclick="return confirm('Deseja excluir a nota {{nota.titulo}}?')" class="btn btn-danger">Excluir</a>
                     </td>
