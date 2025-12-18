@@ -25,6 +25,8 @@ class Usuario(db.Model):
 
     horario_trabalho_id = db.Column(db.Integer, db.ForeignKey("horario_trabalho.id"))
     horario_trabalho = db.relationship("HorarioTrabalho", backref=db.backref("usuario_atribuido", lazy="joined"), foreign_keys=[horario_trabalho_id])
+    
+    atividades = db.relationship("Atividade", secondary="atividade_usuario", back_populates="usuarios")
 
     def encriptar_senha(self):
         self.senha = pbkdf2_sha256.using(rounds=600000, salt_size=32).hash(self.senha)

@@ -1,7 +1,7 @@
 class StatusTarefa():
-    def __init__(self, em_andamento, nome):
-        self.__em_andamento = em_andamento
+    def __init__(self, nome, descricao):
         self.__nome = nome
+        self.__descricao = descricao
 
     @property
     def nome(self):
@@ -12,11 +12,11 @@ class StatusTarefa():
         self.__nome = nome
 
     @property
-    def em_andamento(self):
-        return self.__em_andamento
+    def descricao(self):
+        return self.__descricao
 
-    @em_andamento.setter
-    def em_andamento(self, em_andamento):
-        self.__em_andamento = em_andamento
+    @descricao.setter
+    def descricao(self, descricao):
+        self.__descricao = descricao
 
         

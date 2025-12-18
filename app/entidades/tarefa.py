@@ -1,8 +1,9 @@
 from datetime import datetime
 
 class Tarefa():
-    def __init__(self, titulo, prioridade_tarefa_id, status_tarefa_id, tempo_gasto_total, data_conclusao):
+    def __init__(self, titulo, descricao, prioridade_tarefa_id, status_tarefa_id, tempo_gasto_total, data_conclusao):
         self.__titulo = titulo
+        self.__descricao = descricao
         self.__prioridade_tarefa_id = prioridade_tarefa_id
         self.__status_tarefa_id = status_tarefa_id
         self.__tempo_gasto_total = tempo_gasto_total
@@ -17,6 +18,13 @@ class Tarefa():
     def titulo(self, titulo):
         self.__titulo = titulo
 
+    @property
+    def descricao(self):
+        return self.__descricao
+
+    @descricao.setter
+    def descricao(self, descricao):
+        self.__descricao = descricao
 
     @property
     def prioridade_tarefa_id(self):
