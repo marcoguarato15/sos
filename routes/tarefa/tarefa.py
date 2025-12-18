@@ -20,6 +20,10 @@ def post_tarefa(nota_id):
     prioridades = prioridade_tarefa_service.get_prioridades_tarefas()
     status = status_tarefa_service.get_status_tarefas()
     if request.method == "POST":
-        pass
-
+        if (titulo := request.form.get("titulo")) and (prioridade_tarefa_id := request.form.get('prioridade_id')) and  (status_tarefa_id := request.form.get('status_id')) and (nota_id := request.form.get('nota_id')):
+            descricao = "" if request.form.get("descricao") == None else request.form.get("descricao")
+            tarefa = Tarefa(titulo, descricao, prioridade_tarefa_id, status_tarefa_id)
+            tarefa_service.post_tarefa(tarefa)
+            flash("Sucesso ao adicionar Tarefa!","success")
+            return redirect(url_for('tarefas'))
     return render_template('tarefa/post_tarefa.html', notas=notas, nota_id=nota_id, prioridades=prioridades, status=status)

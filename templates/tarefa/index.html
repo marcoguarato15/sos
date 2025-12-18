@@ -23,21 +23,21 @@
                 </tr>
             </thead>
             <tbody>
-                {% if atividades %}
-                {% for atividade in atividades %}
+                {% if tarefas %}
+                {% for tarefa in tarefas %}
                 <tr>
-                    <td>tarefa.id</td>
-                    <td>tarefa.titulo</td>
-                    <td>tarefa.descricao</td>
-                    <td>tarefa.prioridade_tarefa.nome</td>
-                    <td>tarefa.status_tarefa.nome</td>
-                    <td>tarefa.tempo_gasto_total</td>
-                    <td>tarefa.data_criacao</td>
-                    {%if tarefa.atividades != None %}
+                    <td>{{tarefa.id}}</td>
+                    <td>{{tarefa.titulo}}</td>
+                    <td>{{tarefa.descricao}}</td>
+                    <td>{{tarefa.prioridade_tarefa.nome}}</td>
+                    <td>{% if tarefa.tempo_gasto_total %}{{tarefa.tempo_gasto_total}}{% else %}<span class="required">Sem atividades cadastradas</span>{% endif %}</td>
+                    <td>{{tarefa.status_tarefa.nome}}</td>
+                    <td>{{tarefa.data_criacao}}</td>
+                    {%if tarefa.atividades %}
                     {% for atividade in tarefa.atividades %}
                     <a class="btn btn-success" href="#">{{atividade.nome}}</a>
                     {% endfor %}
-                    {%else%}
+                    {% else %}
                     <td>Sem atividades</td>
                     {% endif %}
                     <td>

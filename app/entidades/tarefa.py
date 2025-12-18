@@ -1,7 +1,7 @@
 from datetime import datetime
 
 class Tarefa():
-    def __init__(self, titulo, descricao, prioridade_tarefa_id, status_tarefa_id, tempo_gasto_total, data_conclusao):
+    def __init__(self, titulo, descricao, prioridade_tarefa_id, status_tarefa_id, tempo_gasto_total=None, data_conclusao=None):
         self.__titulo = titulo
         self.__descricao = descricao
         self.__prioridade_tarefa_id = prioridade_tarefa_id
