@@ -124,3 +124,35 @@ insert into custom_field (id_custom_field, nome) values (36, 'Tel./Ramal');
 insert into custom_field (id_custom_field, nome) values (41, 'owner-email');
 insert into custom_field (id_custom_field, nome) values (24, 'Data da solicitação');
 insert into custom_field (id_custom_field, nome) values (25, 'Data da resposta');
+
+-- prioridade_tarefa
+insert into prioridade_tarefa (nome, num_prioridade) values("Executar Imediatamente",0);
+insert into prioridade_tarefa (nome, num_prioridade) values("Executar no dia",1);
+insert into prioridade_tarefa (nome, num_prioridade) values("Executar até dia seguinte",2);
+insert into prioridade_tarefa (nome, num_prioridade) values("Executar na semana",3);
+insert into prioridade_tarefa (nome, num_prioridade) values("Execução programável",4);
+insert into prioridade_tarefa (nome, num_prioridade) values("Candidato à programação",5);
+
+-- status_tarefa
+insert into status_tarefa (nome, num_status) values ("Em Análise", 0);
+insert into status_tarefa (nome, num_status) values ("Em andamento", 1);
+insert into status_tarefa (nome, num_status) values ("Suspensa", 2);
+insert into status_tarefa (nome, num_status) values ("Incompleta", 3);
+insert into status_tarefa (nome, num_status) values ("Falta material", 4);
+insert into status_tarefa (nome, num_status) values ("Falta conhecimento", 5);
+insert into status_tarefa (nome, num_status) values ("Falta mão de obra", 6);
+insert into status_tarefa (nome, num_status) values ("Indeferida", 7);
+
+-- categoria_atividade
+insert into categoria_atividade (nome, ordem_execucao) values ("Infraestrutura", 1);
+insert into categoria_atividade (nome, ordem_execucao) values ("Cabeamento", 2);
+insert into categoria_atividade (nome, ordem_execucao) values ("Montagem no Patch Panel", 3);
+insert into categoria_atividade (nome, ordem_execucao) values ("Conectorização", 4);
+insert into categoria_atividade (nome, ordem_execucao) values ("Identificação/teste", 5);
+insert into categoria_atividade (nome, ordem_execucao) values ("Configuração", 6);
+insert into categoria_atividade (nome, ordem_execucao) values ("Ativação", 7);
+insert into categoria_atividade (nome, ordem_execucao) values ("Decapamento", 1);
+insert into categoria_atividade (nome, ordem_execucao) values ("Fusão", 2);
+insert into categoria_atividade (nome, ordem_execucao) values ("Montagem no DIO", 3);
+insert into categoria_atividade (nome, ordem_execucao) values ("Montagem no Voice Panel", 1);
+insert into categoria_atividade (nome, ordem_execucao) values ("Manutenção de Conector", 1);
