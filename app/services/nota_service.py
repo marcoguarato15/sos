@@ -1,8 +1,19 @@
 from app import db
 from app.models.nota_model import Nota
+from app.models.demanda_model import Demanda
+from sqlalchemy import or_
 
-def get_notas():
-    notas = Nota.query.filter_by(ativo=True).all()
+def get_notas(titulo=None, id_demanda=None, categoria_id=None):
+    query = Nota.query
+    if titulo:
+        print("TIT",titulo)
+        query = query.filter(Nota.titulo.like(f"%{titulo}%"))
+    if id_demanda:
+        query = query.filter(Nota.demanda.has(Demanda.id_demanda.like(f"%{id_demanda}%")))
+    if categoria_id:
+        query = query.filter(Nota.demanda.has(Demanda.categoria_id == categoria_id))
+    
+    notas = query.filter_by(ativo=True).all()
     return notas
 
 def post_nota(nota):

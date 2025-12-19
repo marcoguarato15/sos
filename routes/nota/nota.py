@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request, flash
-from app.services import nota_service, demanda_service
+from app.services import nota_service, demanda_service, categoria_service
 from app import app
 from app.decorators.jwt_decorator import jwt_refresh
 from app.entidades.nota import Nota
@@ -7,9 +7,14 @@ from app.entidades.nota import Nota
 @app.route("/notas")
 @jwt_refresh
 def notas():
-    notas = nota_service.get_notas()
+    categorias = categoria_service.get_categorias()
+    titulo = request.args.get("titulo") if request.args.get("titulo") else ""
+    print(titulo)
+    id_demanda = request.args.get("id_demanda") if request.args.get("id_demanda") else ""
+    categoria_id = request.args.get("categoria_id") if request.args.get("categoria_id") else ""
+    notas = nota_service.get_notas(titulo, id_demanda, categoria_id)
 
-    return render_template('nota/index.html', notas=notas)
+    return render_template('nota/index.html', notas=notas, titulo=titulo, id_demanda=id_demanda, categoria_id=categoria_id, categorias=categorias)
 
 @app.route('/post/nota', defaults={'demanda_id': None}, methods=["GET","POST"]) 
 @app.route("/post/nota/<int:demanda_id>", methods=["GET","POST"])

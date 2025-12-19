@@ -1,7 +1,7 @@
 from app import db
 from app.models.categoria_model import Categoria
 
-def get_categoria():
+def get_categorias():
     categorias = Categoria.query.all()
     return categorias
 
