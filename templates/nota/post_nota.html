@@ -18,7 +18,7 @@
             {% if demandas %}
             <select class="select-demanda" name="demanda" id="demanda" required>
                 {% for demanda in demandas%}
-                <option value="{{demanda.id}}">{{demanda.id_demanda}} / {{demanda.titulo}}</option>
+                <option value="{{demanda.id}}" {% if demanda_id == demanda.id %}selected{% endif %}>{{demanda.id_demanda}} / {{demanda.titulo}}</option>
                 {% endfor %}
             </select>
             {% else %}

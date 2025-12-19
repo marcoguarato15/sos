@@ -9,13 +9,14 @@ from datetime import timedelta
 @app.route("/usuarios")
 @jwt_refresh
 def usuarios():
-    usuarios = usuario_service.get_usuarios()
+    f_nome = request.args.get("nome") if request.args.get("nome") else ""
+    usuarios = usuario_service.get_usuarios(f_nome)
     for u in usuarios:
         for j in usuarios:
             if u.id == j.criador_id:
                 j.criador = u.nome
         
-    return render_template("usuario/index.html", usuarios=usuarios)
+    return render_template("usuario/index.html", usuarios=usuarios, nome=f_nome)
 
 @app.route('/post/usuario', methods=["GET","POST"])
 @jwt_refresh

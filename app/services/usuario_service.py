@@ -2,8 +2,13 @@ from ..models.usuario_model import Usuario
 from datetime import datetime
 from app import db
 
-def get_usuarios():
-    usuarios = Usuario.query.filter_by(ativo=True).all()
+def get_usuarios(nome=None):
+    query = Usuario.query
+    if nome:
+        query = query.filter(Usuario.nome.like(f"%{nome}%"))
+    
+    usuarios = query.filter_by(ativo=True).all()
+    
     return usuarios
 
 def get_usuario_by_email(email):

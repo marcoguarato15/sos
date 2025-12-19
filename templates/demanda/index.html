@@ -35,7 +35,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">Prioridade</th>
                     <th scope="col">Notas</th>
-                    <!-- <th scope="col">Ações</th> -->
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,10 +50,9 @@
                     <td>{{demanda.prioridade.nome}}</td>
                     <td>{% for nota in demanda.nota %} <a class="btn btn-success inner-content"
                             href="{{url_for('self_nota', id=nota.id)}}">{{nota.titulo}}</a> {% endfor %}</td>
-                    <!-- <td>
-                        <a class="btn btn-warning" href="#">Editar</a>
-                        <a class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir a demanda {{demanda.id_demanda}}')" href="#">Deletar</a>
-                    </td> -->
+                    <td>
+                        <a class="btn btn-success" href="{{url_for('post_nota', demanda_id=demanda.id)}}">Criar nota</a>
+                    </td>
                 </tr>
                 {% endfor %}
                 {% else %}

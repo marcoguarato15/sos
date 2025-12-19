@@ -11,8 +11,9 @@ def notas():
 
     return render_template('nota/index.html', notas=notas)
 
-@app.route("/post/nota", methods=["GET","POST"])
-def post_nota():
+@app.route('/post/nota', defaults={'demanda_id': None}, methods=["GET","POST"]) 
+@app.route("/post/nota/<int:demanda_id>", methods=["GET","POST"])
+def post_nota(demanda_id):
     demandas = demanda_service.get_demandas_ativas()
     titulo = None
     demanda = None
@@ -27,7 +28,7 @@ def post_nota():
                 flash(f"Erro ao adicionar nota {e}","error")
                 return redirect(url_for('post_nota', tit=titulo, dem=demanda))
 
-    return render_template("nota/post_nota.html", demandas=demandas, tit=titulo, dem=demanda)
+    return render_template("nota/post_nota.html", demandas=demandas, tit=titulo, dem=demanda, demanda_id=demanda_id)
 
 @app.route("/put/nota/<int:id>", methods=["GET", "POST"])
 @jwt_refresh
