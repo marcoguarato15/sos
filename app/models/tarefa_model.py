@@ -10,6 +10,9 @@ class Tarefa(db.Model):
     prioridade_tarefa_id = db.Column(db.ForeignKey("prioridade_tarefa.id"))
     prioridade_tarefa = db.relationship("PrioridadeTarefa", backref=db.backref("tarefas", lazy="joined"), foreign_keys=[prioridade_tarefa_id])
 
+    nota_id = db.Column(db.ForeignKey("nota.id"))
+    nota = db.relationship("Nota", backref=db.backref("tarefas", lazy="joined"),foreign_keys=[nota_id] )
+
     status_tarefa_id = db.Column(db.ForeignKey("status_tarefa.id"))
     status_tarefa = db.relationship("StatusTarefa", backref=db.backref("tarefas", lazy="joined"), foreign_keys=[status_tarefa_id])
 

@@ -1,0 +1,35 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title">
+        <h2>{{nota.titulo}}</h2>
+    </div>
+</section>
+<section class="content-container">
+    {% if tarefas %}
+    {% for tarefa in tarefas %}
+    <div class="card-container">
+        <div class="title">
+            <h3>Titulo da Tarefa</h3>
+        </div>
+        <div class="card-content">
+            <div>
+                <p>conteudo da Tarefa</p>
+                <p>conteudo da Tarefa</p>
+                <p>conteudo da Tarefa</p>
+                <p>conteudo da Tarefa</p>
+            </div>
+            <div>
+                <p>conteudo da Tarefa</p>
+                <p>conteudo da Tarefa</p>
+                <p>conteudo da Tarefa</p>
+                <p>conteudo da Tarefa</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Não há Tarefas registradas</p>
+    {% endif %}
+</section>
+{% endblock conteudo %}

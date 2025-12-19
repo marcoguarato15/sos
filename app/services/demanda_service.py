@@ -235,8 +235,13 @@ def put_demandas_from_sos():
 
 
 # Busca apenas as notas ativas de cada demanda
-def get_demandas_ativas():
-    demandas = Demanda.query.filter_by(ativo=True).options(with_loader_criteria(Nota, Nota.ativo == True)).all()
+def get_demandas_ativas(id_demanda=None):
+    query = Demanda.query
+    if id_demanda:
+        query = query.filter(Demanda.id_demanda.like(f"%{id_demanda}%"))
+
+    demandas = query.filter_by(ativo=True).options(with_loader_criteria(Nota, Nota.ativo == True)).all()
+
     return demandas
 
 def get_all_demandas():

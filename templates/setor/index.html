@@ -1,10 +1,10 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
 <section class="content-container">
-    <div class="title border-bottom">
+    <div class="title">
         <h2>Setores</h2>
     </div>
-        <div class="border-bottom">
+        <div class="title">
         <a class="btn btn-success fit-content margin-5" href="{{url_for('post_setor')}}">Criar Setor</a>
     </div>
     <div class="table margin-5">
@@ -30,10 +30,10 @@
                     <td>{{setor.data_criacao}}</td>
                     <td>{{setor.data_atualizacao}}</td>
                     <td style="width: 200px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 0px 2px;">
+                        <div class="inner-content">
 
                             {% for membro in setor.membros %}
-                            <span style="max-width: fit-content;" class="btn btn-success">
+                            <span class="btn btn-success inner-content">
                                 {{membro.nome}}
                             </span>
                             {% endfor %}

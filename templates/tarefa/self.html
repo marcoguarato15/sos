@@ -1,0 +1,35 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title">
+        <h2>Tarefa {{tarefa.nome}}</h2>
+    </div>
+</section>
+<section class="content-container">
+    {% if atividades %}
+    {% for atividade in atividades %}
+    <div class="card-container">
+        <div class="title">
+            <h3>Titulo da Atividade</h3>
+        </div>
+        <div class="card-content">
+            <div>
+                <p>conteudo da atividade</p>
+                <p>conteudo da atividade</p>
+                <p>conteudo da atividade</p>
+                <p>conteudo da atividade</p>
+            </div>
+            <div>
+                <p>conteudo da atividade</p>
+                <p>conteudo da atividade</p>
+                <p>conteudo da atividade</p>
+                <p>conteudo da atividade</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Não há atividades registradas</p>
+    {% endif %}
+</section>
+{% endblock conteudo %}

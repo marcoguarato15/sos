@@ -57,3 +57,11 @@ def del_nota(id):
         flash("Falha ao excluir nota","error")
 
     return redirect(url_for('notas'))
+
+@app.route('/self/nota/<int:id>')
+@jwt_refresh
+def self_nota(id):
+    nota = nota_service.get_nota_by_id(id)
+
+    return render_template('nota/self.html', nota=nota, tarefas=nota.tarefas)
+

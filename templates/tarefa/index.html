@@ -1,11 +1,13 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
 <section class="content-container">
-    <div class="title border-bottom">
+    <div class="title">
         <h2>Tarefas</h2>
     </div>
-    <div style="display: flex;" class="border-bottom">
+    <div style="display: flex;" class="title">
         <a href="{{url_for('post_tarefa')}}" class="btn btn-success margin-5">Criar tarefa</a>
+        <a href="{{url_for('post_tarefa')}}" class="btn btn-warning margin-5">Tarefas suspensas</a>
+        <a href="{{url_for('post_tarefa')}}" class="btn btn-success margin-5"></a>
     </div>
     <section class="table margin-5">
         <table>
@@ -27,7 +29,7 @@
                 {% for tarefa in tarefas %}
                 <tr>
                     <td>{{tarefa.id}}</td>
-                    <td>{{tarefa.titulo}}</td>
+                    <td><a href="{{url_for('self_tarefa', id=tarefa.id)}}">{{tarefa.titulo}}</a></td>
                     <td>{{tarefa.descricao}}</td>
                     <td>{{tarefa.prioridade_tarefa.nome}}</td>
                     <td>{% if tarefa.tempo_gasto_total %}{{tarefa.tempo_gasto_total}}{% else %}<span class="required">Sem atividades cadastradas</span>{% endif %}</td>
@@ -42,7 +44,7 @@
                     {% endif %}
                     <td>
                         <a class="btn btn-success" href="#">Criar atividade</a>
-                        <a class="btn btn-warning" href="#">Editar tarefa</a>
+                        <a class="btn btn-warning" href="{{url_for('put_tarefa', id=tarefa.id)}}">Editar tarefa</a>
                         <a class="btn btn-danger" href="#">Excluir tarefa</a>
                     </td>
                 </tr>

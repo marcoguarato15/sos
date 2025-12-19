@@ -1,10 +1,10 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
 <section class="content-container">
-    <div class="border-bottom">
+    <div class="title">
         <h2 class="title">Notas</h2>
     </div>
-    <div style="display: flex;" class="border-bottom">
+    <div style="display: flex;" class="title">
         <a href="{{url_for('post_nota')}}" class="btn btn-success margin-5">Criar nota</a>
     </div>
     <section class="table margin-5">
@@ -17,6 +17,7 @@
                     <th span="col">Demanda</th>
                     <th span="col">Titulo demanda</th>
                     <th span="col">Categoria</th>
+                    <th span="col">Tarefas</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -27,13 +28,25 @@
                     <td>{{nota.id}}</td>
                     <td>{{nota.titulo}}</td>
                     <td>{{nota.demanda.titulo_projeto.nome}}</td>
-                    <td>{{nota.demanda.id_demanda}}{% if nota.demanda.ativo == False %}/<span class="required" title="Demanda foi finalizada ou suspensa">Desativada</span>{% endif %}</td>
+                    <td>{{nota.demanda.id_demanda}}{% if nota.demanda.ativo == False %}/<span class="required"
+                            title="Demanda foi finalizada ou suspensa">Desativada</span>{% endif %}</td>
                     <td>{{nota.demanda.titulo}}</td>
                     <td>{% if nota.demanda.categoria %}{{nota.demanda.categoria.nome}}{% endif %}</td>
                     <td>
+                        {% if nota.tarefas %}
+                        {% for tarefa in nota.tarefas %}
+                        <a href="{{url_for('self_tarefa', id=tarefa.id)}}" class="btn btn-success fit-content">{{tarefa.titulo}}</a>
+                        {% endfor %}
+                        {% else %}
+                        <span class="required">Não há tarefas registradas</span>
+                        {% endif %}
+                    </td>
+                    <td>
                         <a href="{{url_for('post_tarefa', nota_id=nota.id)}}" class="btn btn-success">Criar Tarefa</a>
                         <a href="{{url_for('put_nota', id=nota.id)}}" class="btn btn-warning">Editar</a>
-                        <a href="{{url_for('del_nota', id=nota.id)}}" onclick="return confirm('Deseja excluir a nota {{nota.titulo}}?')" class="btn btn-danger">Excluir</a>
+                        <a href="{{url_for('del_nota', id=nota.id)}}"
+                            onclick="return confirm('Deseja excluir a nota {{nota.titulo}}?')"
+                            class="btn btn-danger">Excluir</a>
                     </td>
                 </tr>
                 {% endfor %}

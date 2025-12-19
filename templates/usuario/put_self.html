@@ -1,7 +1,7 @@
 {% extends 'adm_base.html' %}
 {% block conteudo %}
 <section class="content-container">
-    <div class="border-bottom">
+    <div class="title">
         <h2>Alterar {{usuario.nome}}</h2>
     </div>
     <form class="form" action="{{url_for('put_self', id=usuario.id)}}" method="POST">

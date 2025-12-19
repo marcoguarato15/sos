@@ -1,11 +1,12 @@
 from datetime import datetime
 
 class Tarefa():
-    def __init__(self, titulo, descricao, prioridade_tarefa_id, status_tarefa_id, tempo_gasto_total=None, data_conclusao=None):
+    def __init__(self, titulo, descricao, prioridade_tarefa_id, status_tarefa_id, nota_id, tempo_gasto_total=None, data_conclusao=None):
         self.__titulo = titulo
         self.__descricao = descricao
         self.__prioridade_tarefa_id = prioridade_tarefa_id
         self.__status_tarefa_id = status_tarefa_id
+        self.__nota_id = nota_id
         self.__tempo_gasto_total = tempo_gasto_total
         self.__data_criacao = datetime.now()
         self.__data_conclusao = data_conclusao
@@ -43,6 +44,13 @@ class Tarefa():
     def status_tarefa_id(self, status_tarefa_id):
         self.__status_tarefa_id = status_tarefa_id
 
+    @property
+    def nota_id(self):
+        return self.__nota_id
+
+    @nota_id.setter
+    def nota_id(self, nota_id):
+        self.__nota_id = nota_id
 
     @property
     def tempo_gasto_total(self):

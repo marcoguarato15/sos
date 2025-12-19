@@ -22,8 +22,30 @@ def post_tarefa(nota_id):
     if request.method == "POST":
         if (titulo := request.form.get("titulo")) and (prioridade_tarefa_id := request.form.get('prioridade_id')) and  (status_tarefa_id := request.form.get('status_id')) and (nota_id := request.form.get('nota_id')):
             descricao = "" if request.form.get("descricao") == None else request.form.get("descricao")
-            tarefa = Tarefa(titulo, descricao, prioridade_tarefa_id, status_tarefa_id)
+            tarefa = Tarefa(titulo, descricao, prioridade_tarefa_id, status_tarefa_id, nota_id)
             tarefa_service.post_tarefa(tarefa)
             flash("Sucesso ao adicionar Tarefa!","success")
             return redirect(url_for('tarefas'))
     return render_template('tarefa/post_tarefa.html', notas=notas, nota_id=nota_id, prioridades=prioridades, status=status)
+
+@app.route('/put/tarefa/<int:id>', methods=["GET","POST"])
+@jwt_refresh
+def put_tarefa(id):
+    tarefa = tarefa_service.get_tarefa_by_id(id)
+    prioridades = prioridade_tarefa_service.get_prioridades_tarefas()
+    status = status_tarefa_service.get_status_tarefas()
+    if request.method == "POST":
+        if (titulo := request.form.get("titulo")) and (prioridade_tarefa_id := request.form.get('prioridade_id')) and  (status_tarefa_id := request.form.get('status_id')):
+            descricao = "" if request.form.get("descricao") == None else request.form.get("descricao")
+            tarefa_service.put_tarefa(id, titulo, descricao, prioridade_tarefa_id, status_tarefa_id)
+            flash("Sucesso ao alterar Tarefa!","success")
+            return redirect(url_for('tarefas'))
+    return render_template('tarefa/put_tarefa.html', tarefa=tarefa, prioridades=prioridades, status=status)
+
+@app.route('/self/tarefa/<int:id>')
+@jwt_refresh
+def self_tarefa(id):
+    tarefa = tarefa_service.get_tarefa_by_id(id)
+
+    return render_template('tarefa/self.html', tarefa=tarefa, atividades=[1,2])
+

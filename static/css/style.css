@@ -13,6 +13,8 @@
     --texto-inverso: #ffffff;
     --destaque-inverso: #62c075;
     --title: cornsilk;
+    --light-title: rgb(175, 243, 175);
+    --subtitle: rgb(252, 248, 236);
     --btn-success: #88e688;
     --btn-warning: #fafa63;
     --btn-danger: #d82222;
@@ -104,6 +106,17 @@ section#conteudo {
     border-radius: 5px;
 }
 
+.card-container {
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
 /* ---- MENU ---- */
 header {
     background-color: var(--destaque);
@@ -155,6 +168,10 @@ nav#menu a:hover {
 }
 /* -------------- */
 /* Titulos */
+.title {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 h1 {
     margin-bottom: 5px;
     text-align: center;
@@ -164,6 +181,19 @@ h2 {
     margin: 5px;
     background-color: var(--title);
     text-align: center;
+    border-radius: 5px;
+}
+
+h3 {
+    margin: 5px;
+    background-color: var(--subtitle);
+    text-align: center;
+    border-radius: 5px;
+}
+
+h4 {
+    margin: 5px;
+    background-color: var(--light-title);
     border-radius: 5px;
 }
 /* -------------- */
@@ -207,7 +237,7 @@ select {
     width: 100%;
 }
 
-label {
+.form-group label {
     display: inline-block;
     text-align: end;
     width: 100px;
@@ -218,7 +248,20 @@ label {
     flex-wrap: wrap;
 }
 
+form > a {
+    width: fit-content;
+}
 
+.form-filter {
+    margin: 10px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.form-btn {
+    margin-left: auto;
+}
 /* ---- Tabelas ---- */
 .table {
     overflow-x: auto;
@@ -240,12 +283,18 @@ th, td {
     font-size: 0.8em;
     border: 1px solid black;
 }
+.inner-content {
+     display: flex;
+     flex-wrap: wrap;
+     margin: 2px;
+     max-width: fit-content;
+}
+
 /* -------------- */
 /* ---- Botões ---- */
 .btn {
     display: block;
     padding: 5px;
-    margin-top: 10px;
     font-weight: 600;
     border: 1px solid black;
     border-radius: 5px;

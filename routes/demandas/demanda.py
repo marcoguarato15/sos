@@ -1,13 +1,16 @@
 from app import app
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from app.decorators.jwt_decorator import jwt_refresh
 from app.services import demanda_service
 
 @app.route('/demandas')
 @jwt_refresh
 def demandas():
-    demandas = demanda_service.get_demandas_ativas()
-    return render_template('demanda/index.html', demandas=demandas)
+    id_demanda = request.args.get('id_demanda') if request.args.get('id_demanda') else ""
+        
+    demandas = demanda_service.get_demandas_ativas(id_demanda)
+
+    return render_template('demanda/index.html', demandas=demandas, id_demanda=id_demanda)
 
 @app.route('/get/demandas')
 @jwt_refresh
