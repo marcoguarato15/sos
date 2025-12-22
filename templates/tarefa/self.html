@@ -2,34 +2,60 @@
 {% block conteudo %}
 <section class="content-container">
     <div class="title">
-        <h2>Tarefa {{tarefa.nome}}</h2>
+        <h2>Tarefa<h2>
+    </div>
+    <div class="card-container">
+        <div class="card-content">
+            <p><span>Nota pai: </span>{{tarefa.nota.titulo}}</p>
+            <p><span>Titulo: </span>{{tarefa.titulo}}</p>
+            <p><span>Prioridade: </span>{{tarefa.prioridade_tarefa.nome}}</p>
+            <p><span>Status: </span>{{tarefa.status_tarefa.nome}}</p>
+            {% if tarefa.descricao %}<p><span>Descrição: </span>{{tarefa.descricao}}</p>{% endif %}
+            {% if tarefa.tempo_gasto_total %}<p><span>Tempo Total: </span>{{tarefa.tempo_gasto_total}}</p>{% endif %}
+            <p><span>Data de Criação: </span>{{tarefa.data_criacao}}</p>
+            {% if tarefa.data_conclusao %}<p><span>Data de Conclusão: </span>{{tarefa.data_conclusao}}</p>{% endif %}
+        </div>
+        <div class="card-footer" style="display: flex;">
+            <a class="btn btn-success" href="{{url_for('post_atividade', tarefa_id=tarefa.id)}}">Criar atividade</a>
+            <a class="btn btn-warning" href="{{url_for('put_tarefa', id= tarefa.id)}}">Editar tarefa</a>
+            <a class="btn btn-danger" href="#">Concluir tarefa</a>
+        </div>
     </div>
 </section>
+{% if atividades %}
+{% for atividade in atividades %}
 <section class="content-container">
-    {% if atividades %}
-    {% for atividade in atividades %}
     <div class="card-container">
         <div class="title">
-            <h3>Titulo da Atividade</h3>
+            <h3>{{atividade.titulo}}</h3>
         </div>
         <div class="card-content">
             <div>
-                <p>conteudo da atividade</p>
-                <p>conteudo da atividade</p>
-                <p>conteudo da atividade</p>
-                <p>conteudo da atividade</p>
+                <span>Titulo: </span><span>{{atividade.titulo}}</span>
+                <br>
+                <span>Tempo Estimado: </span><span class="format-time">{{atividade.tempo_estimado}}</span>
+                <br>
+                <span>Data de Criação: </span><span>{{atividade.data_criacao}}</span>
+                <br>
+                <span>Categoria: </span><span>{{atividade.categoria_atividade.nome}}</span>
             </div>
             <div>
-                <p>conteudo da atividade</p>
-                <p>conteudo da atividade</p>
-                <p>conteudo da atividade</p>
-                <p>conteudo da atividade</p>
+                {% if atividade.usuarios %}
+                <h3>Atribuido para</h3>
+                {% for usuario in atividade.usuarios %}
+                <p>{{usuario.nome}}</p>
+                {% endfor %}
+                {% else %}
+                <p class="required">Sem usuarios atribuidos para esta tarefa</p>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endfor %}
-    {% else %}
-    <p>Não há atividades registradas</p>
-    {% endif %}
 </section>
+{% endfor %}
+{% else %}
+<section style="text-align: center;" class="content-container">
+    <p class="required">Não há atividades registradas</p>
+</section>
+{% endif %}
 {% endblock conteudo %}

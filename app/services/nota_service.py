@@ -6,7 +6,6 @@ from sqlalchemy import or_
 def get_notas(titulo=None, id_demanda=None, categoria_id=None):
     query = Nota.query
     if titulo:
-        print("TIT",titulo)
         query = query.filter(Nota.titulo.like(f"%{titulo}%"))
     if id_demanda:
         query = query.filter(Nota.demanda.has(Demanda.id_demanda.like(f"%{id_demanda}%")))
@@ -14,6 +13,11 @@ def get_notas(titulo=None, id_demanda=None, categoria_id=None):
         query = query.filter(Nota.demanda.has(Demanda.categoria_id == categoria_id))
     
     notas = query.filter_by(ativo=True).all()
+    return notas
+
+def get_notas_suspensas():
+    notas = Nota.query.filter_by(ativo=False).all()
+
     return notas
 
 def post_nota(nota):

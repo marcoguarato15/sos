@@ -1,0 +1,57 @@
+{% extends 'adm_base.html' %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title">
+        <h2>Criar Atividade</h2>
+    </div>
+    <form class="form" action="{{url_for('post_atividade', tarefa_id=tarefa_id)}}" method="post">
+        <div class="split-content-left">
+            <div class="form-group">
+                <label for="titulo">Titulo<span class="required">*</span></label>
+                <input type="text" name="titulo" id="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="tempo_estimado">Tempo estimado<span class="required">*</span></label>
+                <input type="time" name="tempo_estimado" id="tempo_estimado" value="00:00" required>
+            </div>
+        </div>
+        <div class="split-content-right">
+            <div class="form-group">
+                <label for="categoria_atividade_id">Categoria<span class="required">*</span></label>
+                <select name="categoria_atividade_id" id="categoria_atividade_id" required>
+                    {% for categoria_atividade in categorias_atividades %}
+                    <option value="{{categoria_atividade.id}}">{{categoria_atividade.ordem_execucao}}/{{categoria_atividade.nome}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status_tarefa_id">Status<span class="required">*</span></label>
+                <select name="status_tarefa_id" id="status_tarefa_id" required>
+                    {% for status_tarefa in status_tarefas %}
+                    <option value="{{status_tarefa.id}}">{{status_tarefa.nome}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="user-group">
+            <fieldset>
+                <legend>Usuarios</legend>
+                <ul class="user-list">
+                    {% for usuario in usuarios %}
+                    <li>
+                        <input type="checkbox" name="usuarios" id="user_{{usuario.id}}" value="{{usuario.id}}">
+                        <label for="user_{{usuario.id}}">{{usuario.nome}}</label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </fieldset>
+        </div>
+
+        <div class="form-group border-top">
+            <input type="submit" class="btn btn-success" value="Adicionar">
+
+            <a href="#" class="btn btn-warning" onclick="clearForms()">Reverter</a>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}

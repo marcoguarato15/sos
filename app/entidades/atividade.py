@@ -1,14 +1,15 @@
 from datetime import datetime
 
 class Atividade():
-    def __init__(self, titulo, tarefa_id, tempo_estimado, categoria_atividade_id, data_conclusao, status_id):
+    def __init__(self, titulo, tarefa_id, tempo_estimado, categoria_atividade_id, status_tarefa_id, usuarios, data_conclusao=None):
         self.__titulo = titulo
         self.__tarefa_id = tarefa_id
         self.__tempo_estimado = tempo_estimado
         self.__categoria_atividade_id = categoria_atividade_id
         self.__data_criacao = datetime.now()
         self.__data_conclusao = data_conclusao
-        self.__status_id = status_id
+        self.__status_tarefa_id = status_tarefa_id
+        self.__usuarios = usuarios
 
     @property
     def titulo(self):
@@ -55,9 +56,17 @@ class Atividade():
         self.__data_conclusao = data_conclusao
 
     @property
-    def status_id(self):
-        return self.__status_id
+    def status_tarefa_id(self):
+        return self.__status_tarefa_id
     
-    @status_id.setter
-    def status_id(self, status_id):
-        self.__status_id = status_id
+    @status_tarefa_id.setter
+    def status_tarefa_id(self, status_tarefa_id):
+        self.__status_tarefa_id = status_tarefa_id
+
+    @property
+    def usuarios(self):
+        return self.__usuarios
+    
+    @usuarios.setter
+    def usuarios(self, usuarios):
+        self.__usuarios = usuarios

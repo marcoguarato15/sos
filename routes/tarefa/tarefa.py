@@ -8,7 +8,20 @@ from app.decorators.jwt_decorator import jwt_refresh
 @app.route('/tarefas')
 @jwt_refresh
 def tarefas():
-    tarefas = tarefa_service.get_tarefas()
+    prioridades = prioridade_tarefa_service.get_prioridades_tarefas()
+    status = status_tarefa_service.get_status_tarefas()
+    if request.method == "GET":
+        titulo = request.args.get("titulo") if request.args.get("titulo") else ""
+        status_id = request.args.get("status_id") if request.args.get("status_id") else ""
+        prioridade_id = request.args.get("prioridade_id") if request.args.get("prioridade_id") else ""
+    tarefas = tarefa_service.get_tarefas(titulo,status_id,prioridade_id)
+
+    return render_template('tarefa/index.html', tarefas=tarefas, prioridades=prioridades, status=status, titulo=titulo, prioridade_id=prioridade_id, status_id=status_id, filter=True)
+
+@app.route('/tarefas/suspensas')
+@jwt_refresh
+def tarefas_suspensas():
+    tarefas = tarefa_service.get_tarefas_indeferidas()
 
     return render_template('tarefa/index.html', tarefas=tarefas)
 
@@ -47,5 +60,5 @@ def put_tarefa(id):
 def self_tarefa(id):
     tarefa = tarefa_service.get_tarefa_by_id(id)
 
-    return render_template('tarefa/self.html', tarefa=tarefa, atividades=[1,2])
+    return render_template('tarefa/self.html', tarefa=tarefa, atividades=tarefa.atividades)
 

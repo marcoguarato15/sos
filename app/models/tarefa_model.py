@@ -16,7 +16,7 @@ class Tarefa(db.Model):
     status_tarefa_id = db.Column(db.ForeignKey("status_tarefa.id"))
     status_tarefa = db.relationship("StatusTarefa", backref=db.backref("tarefas", lazy="joined"), foreign_keys=[status_tarefa_id])
 
-    tempo_gasto_total = db.Column(db.Time, nullable=True)
+    tempo_gasto_total = db.Column(db.Integer, nullable=True)
     data_criacao = db.Column(db.DateTime, nullable=False)
     data_conclusao = db.Column(db.DateTime, nullable=True)
 

@@ -1,0 +1,30 @@
+{% if papel == 'user' %}
+{% extends 'base.html' %}
+{% else %}
+{% extends 'adm_base.html' %}
+{% endif %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title">
+        <h2>Atividades para fazer</h2>
+    </div>
+    <table>
+        <thead>
+            <td scope="col">ID</td>
+            <td scope="col">Titulo</td>
+            <td scope="col">Categoria</td>
+            <td scope="col">Status</td>
+            <td scope="col">Tempo estimado</td>
+            <td scope="col">Ações</td>
+        </thead>
+        <tbody>
+            {% if usuario.atividades %}
+            {% for atividade in usuario.atividades %}
+            {% endfor %}
+            {% else %}
+            <td class="required">Não há atividades ativas</td>
+            {% endif %}
+        </tbody>
+    </table>
+</section>
+{% endblock conteudo %}

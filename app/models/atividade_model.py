@@ -19,7 +19,7 @@ class Atividade(db.Model):
     categoria_atividade_id = db.Column(db.ForeignKey("categoria_atividade.id"))
     categoria_atividade = db.relationship("CategoriaAtividade", backref=db.backref("atividade"), foreign_keys=[categoria_atividade_id])
 
-    status_id = db.Column(db.ForeignKey("status.id"))
-    status = db.relationship("Status", backref=db.backref("atividade", lazy="joined"), foreign_keys=[status_id])
+    status_tarefa_id = db.Column(db.ForeignKey("status_tarefa.id"))
+    status_tarefa = db.relationship("StatusTarefa", backref=db.backref("atividade", lazy="joined"), foreign_keys=[status_tarefa_id])
 
     usuarios = db.relationship("Usuario", secondary="atividade_usuario", back_populates="atividades")

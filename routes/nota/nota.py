@@ -14,7 +14,13 @@ def notas():
     categoria_id = request.args.get("categoria_id") if request.args.get("categoria_id") else ""
     notas = nota_service.get_notas(titulo, id_demanda, categoria_id)
 
-    return render_template('nota/index.html', notas=notas, titulo=titulo, id_demanda=id_demanda, categoria_id=categoria_id, categorias=categorias)
+    return render_template('nota/index.html', notas=notas, titulo=titulo, id_demanda=id_demanda, categoria_id=categoria_id, categorias=categorias, filter=True)
+
+@app.route("/notas/suspensas")
+def notas_suspensas():
+    notas = nota_service.get_notas_suspensas()
+
+    return render_template("nota/index.html", notas=notas)
 
 @app.route('/post/nota', defaults={'demanda_id': None}, methods=["GET","POST"]) 
 @app.route("/post/nota/<int:demanda_id>", methods=["GET","POST"])

@@ -143,6 +143,7 @@ insert into status_tarefa (nome, num_status) values ("Falta conhecimento", 5);
 insert into status_tarefa (nome, num_status) values ("Falta mão de obra", 6);
 insert into status_tarefa (nome, num_status) values ("Indeferida", 7);
 insert into status_tarefa (nome, num_status) values ("Reaberta", 8);
+insert into status_tarefa (nome, num_status) values ("Concluida", 9);
 
 -- categoria_atividade
 insert into categoria_atividade (nome, ordem_execucao) values ("Infraestrutura", 1);

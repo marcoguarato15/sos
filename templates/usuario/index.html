@@ -53,9 +53,9 @@
                     <td>{% if usuario.disponivel %}Sim{% else %}Não{% endif %}</td>
                     <td>{{usuario.contato}}</td>
                     <td>{{usuario.criador}}</td>
-                    <td>{{usuario.data_criacao}}</td>
-                    <td>{{usuario.ultima_atualizacao}}</td>
-                    <td>{{usuario.ultimo_login}}</td>
+                    <td class="format-datetime">{{usuario.data_criacao}}</td>
+                    <td class="format-datetime">{{usuario.ultima_atualizacao}}</td>
+                    <td class="format-datetime">{{usuario.ultimo_login}}</td>
                     <td>{{usuario.horario_trabalho.horario_inicio}}/{{usuario.horario_trabalho.horario_fim}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{url_for('put_usuario', id=usuario.id)}}">Editar</a>

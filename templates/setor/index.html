@@ -15,7 +15,6 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Gestor</th>
                     <th scope="col">Data de Criação</th>
-                    <th scope="col">Data de atualização</th>
                     <th scope="col">Membros</th>
                     <th scope="col">Ações</th>
                 </tr>
@@ -27,13 +26,11 @@
                     <td>{{setor.id}}</td>
                     <td>{{setor.nome}}</td>
                     <td>{{setor.gestor.nome}}</td>
-                    <td>{{setor.data_criacao}}</td>
-                    <td>{{setor.data_atualizacao}}</td>
+                    <td class="format-datetime">{{setor.data_criacao}}</td>
                     <td style="width: 200px;">
                         <div class="inner-content">
-
                             {% for membro in setor.membros %}
-                            <span class="btn btn-success inner-content">
+                            <span class="btn btn-success">
                                 {{membro.nome}}
                             </span>
                             {% endfor %}

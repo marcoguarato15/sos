@@ -56,6 +56,11 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
+.split-content {
+    display: flex;
+    width: 100%;
+}
+
 .split-content-left {
     width: 49%;
     float: left;
@@ -115,6 +120,13 @@ section#conteudo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
+}
+
+.card-footer {
+    border-top: 1px solid black;
+    padding: 5px;
+    margin-top: 5px;
+    justify-content: center;
 }
 
 /* ---- MENU ---- */
@@ -233,7 +245,7 @@ select {
     align-items: center;
     justify-content: center;
     margin: 10px auto;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
 }
 
@@ -262,6 +274,17 @@ form > a {
 .form-btn {
     margin-left: auto;
 }
+
+.user-group{
+    margin: 5px auto;
+}
+
+.user-list {
+    width: 100%;
+    list-style: none;
+    columns: 2;
+    padding: 5px;
+}
 /* ---- Tabelas ---- */
 .table {
     overflow-x: auto;
@@ -287,7 +310,6 @@ th, td {
      display: flex;
      flex-wrap: wrap;
      margin: 2px;
-     max-width: fit-content;
 }
 
 /* -------------- */
@@ -301,6 +323,7 @@ th, td {
     font-size: 0.8em;
     text-decoration: none;
     color: var(--texto);
+    margin: 4px;
 }
 
 .btn a {

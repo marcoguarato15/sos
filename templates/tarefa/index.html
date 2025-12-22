@@ -6,8 +6,42 @@
     </div>
     <div style="display: flex;" class="title">
         <a href="{{url_for('post_tarefa')}}" class="btn btn-success margin-5">Criar tarefa</a>
-        <a href="{{url_for('post_tarefa')}}" class="btn btn-warning margin-5">Tarefas suspensas</a>
+        <a href="{{url_for('tarefas')}}" class="btn btn-success margin-5">Tarefas</a>
+        <a href="{{url_for('tarefas_suspensas')}}" class="btn btn-warning margin-5">Tarefas suspensas</a>
     </div>
+    {% if filter %}
+    <form class="form form-filter" action="{{url_for('tarefas')}}" method="get">
+
+        <input type="hidden" id="tarefa_filter_status_id" value="{% if status_id %}{{status_id}}{%endif%}">
+
+        <input type="hidden" id="tarefa_filter_prioridade_id" value="{% if prioridade_id %}{{prioridade_id}}{%endif%}">
+
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" id="titulo" value="{{titulo}}">
+
+        <label for="prioridade_id">Prioridade</label>
+        <select name="prioridade_id" id="prioridade_id">
+            <option value="">-- Escolha um --</option>
+            {% for prioridade in prioridades %}
+            <option value="{{prioridade.id}}">{{prioridade.nome}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status_id">Status</label>
+        <select name="status_id" id="status_id">
+            <option value="">-- Escolha um --</option>
+            {% for st in status %}
+            <option value="{{st.id}}">{{st.nome}}</option>
+            {% endfor %}
+        </select>
+
+        <div class="form-btn">
+            <input type="submit" class="btn btn-success" value="Filtrar">
+            <a href="#" class="btn btn-warning" onclick="clearForms()">Limpar</a>
+        </div>
+    </form>
+    </div>
+    {% endif %}
     <section class="table margin-5">
         <table>
             <thead>
@@ -28,21 +62,32 @@
                 {% for tarefa in tarefas %}
                 <tr>
                     <td>{{tarefa.id}}</td>
-                    <td><a href="{{url_for('self_tarefa', id=tarefa.id)}}">{{tarefa.titulo}}</a></td>
+                    <td><a href="{{url_for('self_tarefa', id=tarefa.id)}}">{{tarefa.titulo}}</a>{% if tarefa.nota.ativo == False %}/<span class="required"
+                            title="Nota foi finalizada ou suspensa">Desativada</span>{% endif %}</td>
                     <td>{{tarefa.descricao}}</td>
                     <td>{{tarefa.prioridade_tarefa.nome}}</td>
-                    <td>{% if tarefa.tempo_gasto_total %}{{tarefa.tempo_gasto_total}}{% else %}<span class="required">Sem atividades cadastradas</span>{% endif %}</td>
+                    {% if tarefa.tempo_gasto_total %}
+                    <td><span class="format-time">{{tarefa.tempo_gasto_total}}</span></td>
+                    {% else %}
+                    <td><span class="required">Sem atividades cadastradas</span></td>
+                    {% endif %}
                     <td>{{tarefa.status_tarefa.nome}}</td>
-                    <td>{{tarefa.data_criacao}}</td>
+                    <td class="format-datetime">{{tarefa.data_criacao}}</td>
                     {%if tarefa.atividades %}
-                    {% for atividade in tarefa.atividades %}
-                    <a class="btn btn-success" href="#">{{atividade.nome}}</a>
-                    {% endfor %}
+                    <td>
+                        <div class="inner-content">
+                            {% for atividade in tarefa.atividades %}
+                            <a class="btn {% if atividade.status_tarefa.nome == concluido %}btn-success{% else %}btn-warning{% endif %}"
+                                href="#">{{atividade.titulo}}</a>
+                            {% endfor %}
+                        </div>
+                    </td>
                     {% else %}
                     <td>Sem atividades</td>
                     {% endif %}
                     <td>
-                        <a class="btn btn-success" href="#">Criar atividade</a>
+                        <a class="btn btn-success" href="{{url_for('post_atividade', tarefa_id=tarefa.id)}}">Criar
+                            atividade</a>
                         <a class="btn btn-warning" href="{{url_for('put_tarefa', id=tarefa.id)}}">Editar tarefa</a>
                         <a class="btn btn-danger" href="#">Excluir tarefa</a>
                     </td>
@@ -57,4 +102,27 @@
         </table>
     </section>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        status_id = document.getElementById("tarefa_filter_status_id").value
+        prioridade_id = document.getElementById("tarefa_filter_prioridade_id").value
+        select_status = document.getElementById("status_id")
+        select_prioridade = document.getElementById("prioridade_id")
+
+        for (let option of select_status.options) {
+            if (option.value === status_id) {
+                option.selected = true
+                break
+            }
+        }
+
+        for (let option of select_prioridade.options) {
+            if (option.value === prioridade_id) {
+                option.selected = true
+                break
+            }
+        }
+    }
+    )
+</script>
 {% endblock conteudo %}
