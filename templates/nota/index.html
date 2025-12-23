@@ -72,11 +72,15 @@
                         {% endif %}
                     </td>
                     <td>
+                        {% if nota.ativo == True %}
                         <a href="{{url_for('post_tarefa', nota_id=nota.id)}}" class="btn btn-success">Criar Tarefa</a>
                         <a href="{{url_for('put_nota', id=nota.id)}}" class="btn btn-warning">Editar</a>
                         <a href="{{url_for('del_nota', id=nota.id)}}"
                             onclick="return confirm('Deseja excluir a nota {{nota.titulo}}?')"
                             class="btn btn-danger">Excluir</a>
+                        {% else %}
+                        <a href="{{url_for('reativar_nota', id=nota.id)}}" class="btn btn-success">Reativar</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

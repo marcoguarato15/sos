@@ -11,7 +11,7 @@
             <p><span>Prioridade: </span>{{tarefa.prioridade_tarefa.nome}}</p>
             <p><span>Status: </span>{{tarefa.status_tarefa.nome}}</p>
             {% if tarefa.descricao %}<p><span>Descrição: </span>{{tarefa.descricao}}</p>{% endif %}
-            {% if tarefa.tempo_gasto_total %}<p><span>Tempo Total: </span>{{tarefa.tempo_gasto_total}}</p>{% endif %}
+            {% if tarefa.tempo_gasto_total %}<p><span>Tempo Total: </span><span class="format-time">{{tarefa.tempo_gasto_total}}</span></p>{% endif %}
             <p><span>Data de Criação: </span>{{tarefa.data_criacao}}</p>
             {% if tarefa.data_conclusao %}<p><span>Data de Conclusão: </span>{{tarefa.data_conclusao}}</p>{% endif %}
         </div>
@@ -49,6 +49,9 @@
                 <p class="required">Sem usuarios atribuidos para esta tarefa</p>
                 {% endif %}
             </div>
+        </div>
+        <div>
+            <a class="btn btn-warning fit-content" href="{{url_for('put_atividade', id=atividade.id)}}">Editar</a>
         </div>
     </div>
 </section>

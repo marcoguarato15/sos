@@ -62,3 +62,8 @@ def self_tarefa(id):
 
     return render_template('tarefa/self.html', tarefa=tarefa, atividades=tarefa.atividades)
 
+@app.route("/reativar/tarefa/<int:id>")
+def reativar_tarefa(id):
+    tarefa_service.reativar_tarefa(id)
+    flash("Tarefa reativada com sucesso","success")
+    return redirect(url_for("tarefas_suspensas"))

@@ -67,3 +67,11 @@ def set_senha(usuario,senha):
 def get_usuario_by_id_usuario(id_usuario):
     usuario = Usuario.query.filter_by(id_usuario=id_usuario).first()
     return usuario
+
+def put_esqueci_senha(email):
+    usuario = get_usuario_by_email(email)
+    senha = "123456"
+    usr = Usuario(senha=senha)
+    usr.encriptar_senha()
+    usuario.senha = usr.senha
+    db.session.commit()

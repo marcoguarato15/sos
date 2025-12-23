@@ -1,6 +1,7 @@
 from app import db
 from app.models.tarefa_model import Tarefa
 from app.models.status_tarefa_model import StatusTarefa
+from app.models.usuario_model import Usuario
 from datetime import timedelta, time
 
 def get_tarefas(titulo, status_id, prioridade_id):
@@ -13,12 +14,12 @@ def get_tarefas(titulo, status_id, prioridade_id):
     if prioridade_id:
         query = query.filter(Tarefa.prioridade_tarefa_id == prioridade_id)
 
-    tarefas = query.filter((Tarefa.status_tarefa_id != 16) & (Tarefa.status_tarefa.has(StatusTarefa.nome != "Concluida")) & (Tarefa.ativo == True)).all()
+    tarefas = query.filter(((Tarefa.status_tarefa.has(StatusTarefa.nome == "Em análise")) | (Tarefa.status_tarefa.has(StatusTarefa.nome == "Em andamento")) | (Tarefa.status_tarefa.has(StatusTarefa.nome == "Reaberta"))) & (Tarefa.ativo == True)).all()
 
     return tarefas
 
 def get_tarefas_indeferidas():
-    tarefas_indeferidas = Tarefa.query.filter(Tarefa.status_tarefa.has(StatusTarefa.nome == "Concluida") | Tarefa.status_tarefa.has(StatusTarefa.nome == "Indeferida")).all()
+    tarefas_indeferidas = Tarefa.query.filter(Tarefa.status_tarefa.has(StatusTarefa.nome != "Em análise") & Tarefa.status_tarefa.has(StatusTarefa.nome != "Em andamento") & Tarefa.status_tarefa.has(StatusTarefa.nome != "Reaberta")).all()
     return tarefas_indeferidas
 
 def get_tarefa_by_id(id):
@@ -42,6 +43,7 @@ def put_tarefa(id, titulo, descricao, prioridade_tarefa_id, status_tarefa_id):
 def del_tarefa(id):
     tarefa = Tarefa.query.filter_by(id=id).first()
     tarefa.ativo = False
+    tarefa.status_tarefa_id = 16
     db.session.commit()
     return tarefa
 
@@ -53,4 +55,10 @@ def verificar_tempo_total(id):
         total += duracao
 
     tarefa.tempo_gasto_total = total
+    db.session.commit()
+
+def reativar_tarefa(id):
+    tarefa = get_tarefa_by_id(id)
+    tarefa.ativo = True
+    tarefa.status_tarefa_id = 17
     db.session.commit()

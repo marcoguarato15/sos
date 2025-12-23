@@ -11,6 +11,7 @@ from routes.horario_trabalho import horario_trabalho
 from routes.setor import setor
 from routes.tarefa import tarefa
 from routes.atividade import atividade
+from routes.lancamento_atividade import lancamento_atividade
 
 @jwt.additional_claims_loader
 def add_claims_to_access_token(identity):

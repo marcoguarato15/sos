@@ -39,3 +39,7 @@ def del_nota(id):
     nota = Nota.query.filter_by(id=id).first()
     nota.ativo = False
     db.session.commit()
+
+def reativar_nota(id):
+    Nota.query.filter_by(id=id).update({"ativo":True})
+    db.session.commit()

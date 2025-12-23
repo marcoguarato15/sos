@@ -86,10 +86,14 @@
                     <td>Sem atividades</td>
                     {% endif %}
                     <td>
+                        {% if tarefa.status_tarefa.nome != "Indeferida" %}
                         <a class="btn btn-success" href="{{url_for('post_atividade', tarefa_id=tarefa.id)}}">Criar
                             atividade</a>
                         <a class="btn btn-warning" href="{{url_for('put_tarefa', id=tarefa.id)}}">Editar tarefa</a>
                         <a class="btn btn-danger" href="#">Excluir tarefa</a>
+                        {% else %}
+                        <a class="btn btn-success" href="{{url_for('reativar_tarefa', id=tarefa.id)}}">Reativar</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

@@ -110,3 +110,8 @@ def my_page():
     usuario = usuario_service.get_usuario_by_id(id_usuario)
 
     return render_template("usuario/my_page.html", usuario=usuario, papel=usuario.papel)
+
+@app.route("/reset/<email>")
+def put_esqueci_senha(email):
+    usuario_service.put_esqueci_senha(email)
+    return "<p>Ok</p>"

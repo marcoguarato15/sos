@@ -10,6 +10,7 @@ class Atividade(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     titulo = db.Column(db.Text, nullable=True)
     tempo_estimado = db.Column(db.Integer, nullable=False)
+    tempo_gasto = db.Column(db.Integer, nullable=True)
     data_criacao = db.Column(db.DateTime, nullable=False)
     data_conclusao = db.Column(db.DateTime, nullable=True)
 

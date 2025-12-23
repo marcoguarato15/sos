@@ -1,0 +1,37 @@
+{% if papel == 'admin' %}
+{% extends 'adm_base.html' %}
+{% else %}
+{% extends 'base.html' %}
+{% endif %}
+{% block conteudo %}
+<section class="content-container">
+    <div class="title">
+        <h2>Lançar atividade</h2>
+    </div>
+    <form class="form" action="{{url_for('post_lancamento_atividade', atividade_id=atividade.id)}}" method="post">
+
+        <div class="form-group">
+            <label for="descricao">Descricao</label>
+            <textarea name="descricao" id="descricao"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="usuario_id">Usuario<span class="required">*</span></label>
+            <select name="usuario_id" id="usuario_id">
+                {% for usuario in usuarios %}
+                <option value="{{usuario.id}}" {% if usuario.id==usuario_id %}selected{% endif %}>{{usuario.nome}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tempo_gasto">Tempo gasto<span class="required">*</span></label>
+            <input type="time" name="tempo_gasto" id="tempo_gasto" value="00:00" required>
+        </div>
+
+        <div class="form-group border-top">
+            <input type="submit" class="btn btn-success" value="Adicionar">
+            <a href="#" class="btn btn-warning" onclick="clearForms()">Reverter</a>
+        </div>
+    </form>
+</section>
+{% endblock conteudo %}

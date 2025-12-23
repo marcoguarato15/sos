@@ -77,3 +77,8 @@ def self_nota(id):
 
     return render_template('nota/self.html', nota=nota, tarefas=nota.tarefas)
 
+@app.route("/reativar/nota/<int:id>")
+def reativar_nota(id):
+    nota_service.reativar_nota(id)
+    flash("Nota reativada com sucesso","success")
+    return redirect(url_for("notas_suspensas"))
