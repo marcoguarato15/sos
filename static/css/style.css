@@ -21,13 +21,24 @@
     --alert-success:#88e688;
     --alert-danger:#e79494;
     --table-head: #74f5ca;
-    --required: #ff0000;
 }
 /* ---- GERAL ---- */
 
 .required {
-    color: red;
+    color: var(--btn-danger);
     font-size: 0.8em;
+}
+
+.success {
+    color: var(--btn-success);
+}
+
+.warning {
+    color: var(--btn-warning);
+}
+
+.text-align-center {
+    text-align: center;
 }
 
 .fit-content {

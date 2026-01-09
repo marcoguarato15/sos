@@ -55,7 +55,7 @@
                 {% for nota in notas %}
                 <tr>
                     <td>{{nota.id}}</td>
-                    <td>{{nota.titulo}}</td>
+                    <td><a href="{{url_for('self_nota', id=nota.id)}}">{{nota.titulo}}</a></td>
                     <td>{{nota.demanda.titulo_projeto.nome}}</td>
                     <td>{{nota.demanda.id_demanda}}{% if nota.demanda.ativo == False %}/<span class="required"
                             title="Demanda foi finalizada ou suspensa">Desativada</span>{% endif %}</td>

@@ -2,34 +2,52 @@
 {% block conteudo %}
 <section class="content-container">
     <div class="title">
-        <h2>{{nota.titulo}}</h2>
+        <h2>Nota</h2>
+    </div>
+    <div class="card-container">
+        <div class="card-content">
+            <p><span>Titulo: </span>{{nota.titulo}}</p>
+            <p>Demanda pai: {{nota.demanda.id_demanda}}</p>
+            <p>Titulo da demanda: {{nota.demanda.titulo}}</p>
+            <p>Data de Criação: <span class="format-datetime">{{nota.data_criacao}}</span></p>
+            <p><span>Ativo: </span>{%if nota.ativo %}<span class="success">Ativo </span>{% else %}<span
+                    class="required">Inativo</span>{% endif %}</p>
+        </div>
+        <div class="card-footer" style="display: flex;">
+            <a class="btn btn-warning" href="{{url_for('put_nota', id= nota.id)}}">Editar Nota</a>
+            <a class="btn btn-danger" onclick="return confirm('Deseja concluir a Nota?')" href="{{url_for('del_nota', id=nota.id)}}">Concluir Nota</a>
+        </div>
     </div>
 </section>
+{% if tarefas %}
+{% for tarefa in tarefas %}
 <section class="content-container">
-    {% if tarefas %}
-    {% for tarefa in tarefas %}
     <div class="card-container">
         <div class="title">
             <h3>Titulo da Tarefa</h3>
         </div>
         <div class="card-content">
             <div>
-                <p>conteudo da Tarefa</p>
-                <p>conteudo da Tarefa</p>
-                <p>conteudo da Tarefa</p>
-                <p>conteudo da Tarefa</p>
+                <p>Titulo: {{tarefa.titulo}}</p>
+                <p>Prioridade: {{tarefa.prioridade_tarefa.nome}}</p>
+                <p>Status: {{tarefa.status_tarefa.nome}}</p>
+                <p>Tempo Gasto: {{tarefa.tempo_gasto_total}}</p>
             </div>
             <div>
-                <p>conteudo da Tarefa</p>
-                <p>conteudo da Tarefa</p>
-                <p>conteudo da Tarefa</p>
-                <p>conteudo da Tarefa</p>
+                <p>Data de Criação: {{tarefa.data_criacao}}</p>
+                <p>Data de Conclusão: {{tarefa.data_conclusao}}</p>
+                <p>Descrição: {{tarefa.descricao}}</p>
+                <p>Ativo: {% if tarefa.ativo %}<span class="success">Ativo</span>{% else %}<span
+                        class="required">Inativo</span>{% endif %}</p>
             </div>
         </div>
+
     </div>
-    {% endfor %}
-    {% else %}
-    <p>Não há Tarefas registradas</p>
-    {% endif %}
 </section>
+{% endfor %}
+{% else %}
+<div class="content-container text-align-center">
+    <p class="required">Não há Tarefas registradas</p>
+</div>
+{% endif %}
 {% endblock conteudo %}
